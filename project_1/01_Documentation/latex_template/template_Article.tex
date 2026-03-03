@@ -1,0 +1,157 @@
+\documentclass[18pt]{article}
+\usepackage{listings}
+\usepackage{fontspec}
+\usepackage[bookmarks=true, pdfborder={0 0 0}]{hyperref}
+\usepackage{bookmark}
+\usepackage{blindtext}
+\usepackage{caption}
+\captionsetup[table]{labelformat=empty, labelsep=none}
+\captionsetup[lstlisting]{labelformat=empty, labelsep=none}
+\usepackage[
+inner=3cm,      % Mehr Platz für die Bindung
+outer=3cm,      % Standardplatz nach außen
+top=3cm,
+bottom=3cm
+]{geometry}
+
+\hypersetup{
+	colorlinks=true,      % Rahmen entfernen und Text einfärben
+	linkcolor=blue,       % Farbe für interne Verweise (Tabellen, Kapitel, etc.)
+	urlcolor=cyan,        % Farbe für Web-Adressen
+	citecolor=green!60!black % Farbe für Zitate (Dunkelgrün)
+}
+
+\newfontfamily{\jetbrainsmono}[Scale=0.9]{JetBrains Mono}
+
+%opening
+\title{}
+\author{Anthony Timmel}
+
+\begin{document}
+	
+\maketitle
+
+\newpage
+	
+\tableofcontents
+
+\newpage
+
+\section{Aufgabe Teil 1}
+
+\subsection[Anforderungen]{Anforderungen}
+Bevor das cyber-physische System (CPS) in das interne Netzwerk integriert
+werden kann sollen sie testen, ob die Möglichkeit besteht mit einem ESP32
+als Grundlage des CPS, die Temperatur und die Luftfeuchtigkeit mit einem
+Sensor (DHT22) einzulesen und zu verarbeiten. Für die sekündliche
+Übermittlung der Daten an den später auszuwertenden MQTT-Client sollen
+die Sensorwerte in das Datenformat JSON abgelegt werden.
+
+\textbf{\textit{Zusatz:}} Greifen Sie auf den Inhalt des in MicroPython erstellten JSON-Strings
+zu und geben Sie die Sensordaten mit der print-Funktion im Terminal aus.
+
+
+\subsection[Hardware]{Die Vernetzung der Hardware auf dem Steckbrett}
+
+\subsubsection{Bauelemente}
+
+\textbf{ESP32}
+\newline
+Der \textit{ESP32} befindet sich bereits vorinstalliert auf dem Steckbrett und kann, durch das Hinzufügen des Stromversorgungs- \& Datenübertragungskabels lässt sich die Einheit, von dem Computer aus Steuern.
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[h!] % [h!] = hier platziere die Tabelle möglichst hier
+	\centering % Zentriert die Tabelle auf der Seite
+	\caption{Verteilung der Pin-Nutzung auf dem ESP32} % Beschriftung der Tabelle
+	\label{tab:teil_1_steckbrett_esp32} % Label für Referenzen
+	\begin{tabular}{|l|l|} % Definiert 3 Spalten: zentriert, linksbündig, rechtsbündig, mit vertikalen Linien
+		\hline
+		Pin & Aufgabe \\
+		\hline
+		3V3 & Stromversorgung des Bauteils \\
+		GND & Die Masse des ESP32 \\
+		G4 & Datenübertragungsport für die Messdaten es Bauteils \\
+		\hline % Horizontale Linie
+	\end{tabular}
+\end{table}
+\renewcommand{\arraystretch}{1}
+\newline
+\newline
+\textbf{DHT22}
+\newline
+Das Erweiterungsmodul \textit{DHT22} ist ein Modul, was es ermöglicht, die Raumtemperatur sowie die Luftfeuchtigkeit in der Umgebung festzustellen.
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[h!] % [h!] = hier platziere die Tabelle möglichst hier
+	\centering % Zentriert die Tabelle auf der Seite
+	\caption{Verteilung der Pin-Nutzung auf dem DHT22} % Beschriftung der Tabelle
+	\label{tab:teil_1_steckbrett_dht22} % Label für Referenzen
+	\begin{tabular}{|l|l|} % Definiert 3 Spalten: zentriert, linksbündig, rechtsbündig, mit vertikalen Linien
+		\hline
+		Pin & Aufgabe \\
+		\hline
+		VCC & Stromversorgung des Bauteils \\
+		GROUND & Die Masse des DHT22 \\
+		DATA & Datenübertragungsport für die Messdaten es Bauteils \\
+		\hline % Horizontale Linie
+	\end{tabular}
+\end{table}
+\renewcommand{\arraystretch}{1}
+
+\subsubsection{Vernetzung der Bauelemente}
+Der \textit{ESP32} ist mit dem Pin \textbf{G4} mit dem \textit{DHT22} \textbf{DATA} Pin verbunden.
+Die Stromversorgung des \textit{DHT22} geht über den \textbf{VCC} Pin des Bauteils, dieser ist mit der Stromversorgung von dem \textbf{3V3} Pin des \textit{ESP32} verbunden.
+Der \textbf{GROUND} Pin des Bauteils, ist mit der Masse \textbf{GND} des \textit{ESP32} zusammengeschlossen, damit die Schaltung elektrotechnisch Funktionstüchtig werden kann.
+
+
+\subsection[Programmcode]{Programmcode für den ESP32}
+
+\lstset{
+	language=Python, % Oder Java, C++, SQL, etc.
+	basicstyle=\jetbrainsmono\footnotesize, % Schriftart und Größe
+	numbers=left, % Zeilennummern links
+	frame=tb, % Rahmen oben und unten
+	caption={Funktion, damit die Daten für die Luftfeuchtigkeit \& Raum-Temperatur abgegriffen werden},
+	label={lst:temp_and_humid} % Label zum Referenzieren
+}
+
+\begin{lstlisting}[language=Python]
+def get_device_temp_and_humid():
+	dht_device = DHT22(Pin(4, Pin.IN))
+	dht_device.measure()
+	temp = dht_device.temperature()
+	humid = dht_device.humidity()
+	
+	return temp, humid
+\end{lstlisting}
+
+Mithilfe dieser Funktion, ist es uns möglich, die \textbf{Temperatur} und \textbf{Luftfeuchtigkeit} an dem \textbf{aktuellen Ort} zu bestimmen. Dafür sendet das Modul \textit{DHT22} seine Daten an den Pin \textbf{G4}, diesen haben wir zuvor (\hyperref[tab:teil_1_steckbrett_esp32]{Pinverteilung ESP32}) definiert.
+
+Durch \textbf{DHT22} aus der Datei \textbf{dht} erhalten wir die Möglichkeit, Daten über eine Erweiterung des Protokolls abzugreifen. Dafür haben wir den Input-Pin der DHT22 Klasse \texttt{DHT22(Pin(4, Pin.IN))} bei der Initialisierung übergeben. Im Anschluss ist es uns nun möglich, eine Messung mithilfe von \texttt{dht\_device.measure()} können wir das Modul auffordern, eine Messung der Temperatur sowie Luftfeuchtigkeit vorzunehmen. Im Anschluss erhalten wir die Temperatur sowie Luftfeuchtigkeit über die jeweilige Methode des Objektes und geben diese am Ende der Funktion als \texttt{Pair} zurück.
+\newline
+
+\lstset{
+	language=Python, % Oder Java, C++, SQL, etc.
+	basicstyle=\jetbrainsmono\footnotesize, % Schriftart und Größe
+	numbers=left, % Zeilennummern links
+	frame=tb, % Rahmen oben und unten
+	caption={While-Schleife, die als Hauptprozess der Anwendung läuft, und sekündlich den Prozess wiederholt},
+	label={lst:teil1_while} % Label zum Referenzieren
+}
+
+\begin{lstlisting}[language=Python]
+while True:
+	temp, humid = get_device_temp_and_humid()
+
+	raw_json_object = {
+		"Temperatur": temp,
+		"Luftfeuchtigkeit": humid
+	}
+
+	json_object = json.dumps(raw_json_object)
+
+	print(json_object)
+	sleep(1)
+\end{lstlisting}
+
+
+
+\end{document}
