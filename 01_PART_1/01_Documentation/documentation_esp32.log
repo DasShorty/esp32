@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (MiKTeX 25.12) (format=lualatex 2026.2.26)  3 MAR 2026 16:10
+This is LuaHBTeX, Version 1.24.0 (MiKTeX 25.12) (format=lualatex 2026.3.1)  3 MAR 2026 16:31
  restricted system commands enabled.
 **documentation_esp32.tex
 (./documentation_esp32.tex
@@ -443,17 +443,6 @@ File: t1txtt.fd 2000/12/15 v3.1
 BrainsMono.fontspec)
 luaotfload | cache : Lookup cache loaded from C:/Users/anthony/AppData/Local/MiK
 TeX/luatex-cache/generic/names/luaotfload-lookup-cache.luc.
-
-Package fontspec Info: 
-(fontspec)             Could not resolve font "JetBrains Mono/BI" (it probably
-(fontspec)             doesn't exist).
-
-
-Package fontspec Info: 
-(fontspec)             Could not resolve font "JetBrains Mono/B" (it probably
-(fontspec)             doesn't exist).
-
-
 (C:/Users/anthony/AppData/Local/Programs/MiKTeX/tex/latex/jetbrainsmono-otf/Jet
 BrainsMono.fontspec)
 (C:/Users/anthony/AppData/Local/Programs/MiKTeX/tex/latex/jetbrainsmono-otf/Jet
@@ -468,8 +457,13 @@ Package fontspec Info:
 (fontspec)              
 (fontspec)             - 'normal' (m/n) with NFSS spec.: <->"name:JetBrains
 (fontspec)             Mono:mode=node;script=latn;language=dflt;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"name:JetBrains
+(fontspec)             Mono/B:mode=node;script=latn;language=dflt;"
 (fontspec)             - 'italic' (m/it) with NFSS spec.: <->"name:JetBrains
 (fontspec)             Mono/I:mode=node;script=latn;language=dflt;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->"name:JetBrains
+(fontspec)             Mono/BI:mode=node;script=latn;language=dflt;"
 
 
 
@@ -635,12 +629,12 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 
 warning  (pdf backend): ignoring duplicate destination with the name 'page.1'
 [1] [2]
-<assets/ESP32_Structure.pdf, id=198, 791.8383pt x 519.86218pt>
+<assets/ESP32_Structure.pdf, id=168, 791.8383pt x 519.86218pt>
 File: assets/ESP32_Structure.pdf Graphic file (type pdf)
 <use assets/ESP32_Structure.pdf>
 Package luatex.def Info: assets/ESP32_Structure.pdf  used on input line 112.
 (luatex.def)             Requested size: 443.57848pt x 291.22395pt.
-<assets/esp32_top-view.jpg, id=199, 3018.27625pt x 2456.17625pt>
+<assets/esp32_top-view.jpg, id=169, 3018.27625pt x 2456.17625pt>
 File: assets/esp32_top-view.jpg Graphic file (type jpg)
 <use assets/esp32_top-view.jpg>
 Package luatex.def Info: assets/esp32_top-view.jpg  used on input line 118.
@@ -732,61 +726,47 @@ Package rerunfilecheck Warning: File `documentation_esp32.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `documentation_esp32.out':
-(rerunfilecheck)             Before: 1835BE6D35C1E7400F795B9AC683D803;4840
+(rerunfilecheck)             Before: 969C69C1EF84B96170058FBBF927D50E;3773
 (rerunfilecheck)             After:  3B7D49A3B4DA8FDEFF648C0523EEFDF4;3744.
 )
 
 Here is how much of LuaTeX's memory you used:
- 15801 strings out of 476081
+ 15802 strings out of 476081
  125009,953878 words of node,token memory allocated
  498 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 7 attribute, 54 glue_spec,
  7 attribute_list, 1 write nodes
-   avail lists: 2:2826,3:378,4:288,5:1965,6:128,7:7438,8:31,9:5455,10:7,11:252
- 37667 multiletter control sequences out of 65536+600000
- 64 fonts using 7004631 bytes
+   avail lists: 1:1,2:2826,3:378,4:288,5:1965,6:128,7:7438,8:31,9:5455,10:7,11:2
+52
+ 37674 multiletter control sequences out of 65536+600000
+ 68 fonts using 8140183 bytes
  73i,9n,91p,713b,890s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/anthony/AppData/Local/Programs/MiKTeX/fonts/opentype/public/jetbrainsm
+ono-otf/jetbrainsmono-italic.otf><c:/users/anthony/appdata/local/programs/miktex
+/fonts/opentype/public/lm/lmroman7-italic.otf><c:/users/anthony/appdata/local/pr
+ograms/miktex/fonts/opentype/public/lm/lmmono10-regular.otf><c:/users/anthony/ap
+pdata/local/programs/miktex/fonts/opentype/public/lm/lmroman10-italic.otf><C:/Us
+ers/anthony/AppData/Local/Programs/MiKTeX/fonts/opentype/public/jetbrainsmono-ot
+f/jetbrainsmono-regular.otf><c:/users/anthony/appdata/local/programs/miktex/font
+s/opentype/public/lm/lmroman10-bolditalic.otf><c:/users/anthony/appdata/local/pr
+ograms/miktex/fonts/opentype/public/lm/lmroman10-regular.otf><c:/users/anthony/a
+ppdata/local/programs/miktex/fonts/opentype/public/lm/lmroman12-regular.otf><c:/
+users/anthony/appdata/local/programs/miktex/fonts/opentype/public/lm/lmroman7-bo
+ld.otf><c:/users/anthony/appdata/local/programs/miktex/fonts/opentype/public/lm/
+lmroman10-bold.otf><c:/users/anthony/appdata/local/programs/miktex/fonts/opentyp
+e/public/lm/lmroman12-italic.otf><c:/users/anthony/appdata/local/programs/miktex
+/fonts/opentype/public/lm/lmroman12-bold.otf><C:/Users/anthony/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/anthony/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/anthon
+y/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Use
+rs/anthony/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb
+><C:/Users/anthony/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmsy10.pfb><C:/Users/anthony/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/cm/cmsy7.pfb><C:/Users/anthony/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmsy9.pfb>
+Output written on documentation_esp32.pdf (18 pages, 1109592 bytes).
 
-warning  (pdf backend): unreferenced destination with name 'subsubsection.6.2.3'
-
-
-warning  (pdf backend): unreferenced destination with name 'subsubsection.6.2.2'
-
-
-warning  (pdf backend): unreferenced destination with name 'subsubsection.6.2.1'
-
-
-warning  (pdf backend): unreferenced destination with name 'subsection.6.2'
-
-warning  (pdf backend): unreferenced destination with name 'subsection.6.1'
-
-warning  (pdf backend): unreferenced destination with name 'section.6'
-<C:/Users/anthony/AppData/Local/Microsoft/Windows/Fonts/jetbrainsmono-italic[wgh
-t].ttf><//?/c:/users/anthony/appdata/local/programs/miktex/fonts/opentype/public
-/lm/lmroman7-italic.otf><//?/c:/users/anthony/appdata/local/programs/miktex/font
-s/opentype/public/lm/lmmono10-regular.otf><//?/c:/users/anthony/appdata/local/pr
-ograms/miktex/fonts/opentype/public/lm/lmroman10-italic.otf><C:/Users/anthony/Ap
-pData/Local/Microsoft/Windows/Fonts/jetbrainsmono[wght].ttf><//?/c:/users/anthon
-y/appdata/local/programs/miktex/fonts/opentype/public/lm/lmroman10-bolditalic.ot
-f><//?/c:/users/anthony/appdata/local/programs/miktex/fonts/opentype/public/lm/l
-mroman10-regular.otf><//?/c:/users/anthony/appdata/local/programs/miktex/fonts/o
-pentype/public/lm/lmroman12-regular.otf><//?/c:/users/anthony/appdata/local/prog
-rams/miktex/fonts/opentype/public/lm/lmroman7-bold.otf><//?/c:/users/anthony/app
-data/local/programs/miktex/fonts/opentype/public/lm/lmroman10-bold.otf><//?/c:/u
-sers/anthony/appdata/local/programs/miktex/fonts/opentype/public/lm/lmroman12-it
-alic.otf><//?/c:/users/anthony/appdata/local/programs/miktex/fonts/opentype/publ
-ic/lm/lmroman12-bold.otf><C:/Users/anthony/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmmi10.pfb><C:/Users/anthony/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/anthony/AppData/Local/Prog
-rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/anthony/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/anthony/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users
-/anthony/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-<C:/Users/anthony/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
-msy9.pfb>
-Output written on documentation_esp32.pdf (18 pages, 1134773 bytes).
-
-PDF statistics: 677 PDF objects out of 1000 (max. 8388607)
- 317 named destinations out of 1000 (max. 1048576)
- 281 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 647 PDF objects out of 1000 (max. 8388607)
+ 311 named destinations out of 1000 (max. 1048576)
+ 233 words of extra memory for PDF output out of 10000 (max. 100000000)
 

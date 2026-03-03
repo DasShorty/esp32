@@ -1,0 +1,103 @@
+\section{Aufgabe Teil 4}
+\subsection{Anforderungen}
+Implementierung eines MQTT-Klienten, zur automatisierten Datenübertragung. Dabei soll sich der ESP32 mit einem Netzwerkgerät verbinden und eine Verbindung zu einem externen bereitgestellten Dienst hergestellt werden.
+Folgende Parameter sind für die Verbindung mit dem bereitgestellten Dienst angegeben:
+
+\begin{itemize}
+	\item Broker: mosquitto.nodered-fi.ipv64.net
+	\item Benutzername: FI
+	\item Passwort: FI
+	\item Topic: Met/FI/Ihr\_Nachname
+	\item ID: „Ihr\_Nachname+Geburtsjahr“
+\end{itemize}
+
+\subsection{Herstellen einer Kommunikationsgrundlage}
+Damit eine Kommunikation zwischen dem ESP32 und der externen bereitgestellten Schnittstelle hergestellt werden kann, wird eine Netzwerkverbindung benötigt. Wir benutzen, zum Aufbau der Kommunikation, das W-LAN Modul des ESP32, um dieses mit einem Zugriffspunkt (auch Access-Point kurz AP genannt). Hierfür benutzen wir die offizielle \hyperref{https://docs.micropython.org/en/latest/esp32/quickref.html#wlan}{}{}{Dokumentation von MicroPython}.
+\subsubsection{W-LAN Modul einrichten}
+Der folgende Programmiercode ist ein Teilauszug aus der Dokumentation:
+\begin{python}
+import network
+	
+wlan = network.WLAN()
+wlan.active(True)
+wlan.connect('ssid', 'key')
+\end{python}
+Der Parameter \texttt{ssid} \textbf{muss} mit der SSID des zu \textbf{verbindenen} AP gesetzt werden, sowie der \texttt{key} mit dem PSK des AP \textbf{ersetzt} werden muss.
+Nach dem starten des \textit{ESP32}, \textbf{verbindet} sich dieser mit dem bereitgestellten AP. Ist der \textit{ESP32} mit einem Hotspot auf einen Telefone oder PC verbunden, \textbf{taucht} dieser in der Liste der verbundenen Geräte auf.
+
+\subsubsection{MQTT Bibliothek einbinden}
+MicroPython verfügt über keinen bereits implementierten MQTT-Klienten, weshalb dieser manuell dem \textit{ESP32} hinzugefügt werden muss. Hierbei halten wir uns an die Dokumentation auf den \hyperref{https://randomnerdtutorials.com/micropython-mqtt-esp32-esp8266/}{}{}{Random Nerd Tutorials}.
+
+Dabei müssen wir folgenden Quellcode, als Datei, auf dem \textit{ESP32} hinterlegen. Dieser Schritt ähnelt dem Prozess aus \hyperref[sec:aufgabe3]{Aufgabe Teil 3}, dort wurde ebenfalls zusätzliche benötigte Software für den \textit{ESP32} hinzugefügt.
+Dabei \textbf{erstellen} wir eine Datei mit \textbf{folgenden} \hyperref{https://raw.githubusercontent.com/RuiSantosdotme/ESP-MicroPython/master/code/MQTT/umqttsimple.py}{}{}{Inhalt}  \& dem Namen "\texttt{umqttsimple.py}".
+
+\textbf{Nachdem} wir die Datei nun auf dem \textit{ESP32} hinzugefügt haben, kann die \textbf{Konfiguration} des MQTT-Klienten \textbf{erfolgen}.
+
+\subsubsection{MQTT-Klienten konfigurieren}
+\begin{python}
+import time
+from umqttsimple import MQTTClient
+import ubinascii
+import machine
+import micropython
+import network
+import esp
+import gc
+esp.osdebug(None)
+gc.collect()
+
+mqtt_server = 'mosquitto.nodered-fi.ipv64.net'
+mqtt_user = 'FI'
+mqtt_pass = 'FI'
+
+client_id = ubinascii.hexlify(machine.unique_id())
+topic_pub = b'Met/FI/Timmel'
+
+last_message = 0
+message_interval = 5
+
+def mqtt_connect():
+	client = MQTTClient(
+			client_id, 
+			mqtt_server, 
+			user=mqtt_user, 
+			password=mqtt_pass)
+	client.connect()
+	print('Connected to %s MQTT broker' % (mqtt_server))
+	return client
+
+def restart_and_reconnect():
+	print('Failed to connect to MQTT broker. Reconnecting...')
+	time.sleep(10)
+	machine.reset()
+	
+def send_message(message):
+	try:
+		client.publish(topic_pub, message)
+		last_message = time.time()
+	except OSError as e:
+		restart_and_reconnect()
+
+def can_send_message():
+	return (time.time() - last_message) > message_interval
+\end{python}
+Zuerst importieren wir alle benötigten Inhalte. Wir setzen im Anschluss die Log-Nachrichten, für den Debug-Modus, aus. Da wir diese für den regulären Betrieb nicht benötigen. Sollten wir Probleme mit unserem Programmiercode feststellen, können wir darüber die Log-Nachrichten des internen Systems wieder anschalten, dadurch erhalten wir einen detaillierten protokollierten Ablauf des ganzen Programms.
+
+Damit wir einen möglichst reibungslosen Programmablauf direkt am Start gewährleisten können, leeren wir den Arbeitsspeicher mithilfe von \pythoninline{gc.collect()}. Dadurch wird ungenutzer belegter Arbeitsspeicher wieder freigegeben. Python übernimmt für uns diesen Prozess automatisch. Jedoch befinden wir uns auf einem System mit einer sehr kleinen Menge an Arbeitsspeicher, weshalb eine Leerung am Anfang nützlich ist, um die Reste des vorherigen Programms zu entfernen.
+
+Die Variablen \pythoninline{mqtt_server}, \pythoninline{mqtt_user} \& \pythoninline{mqtt_pass} definieren die Verbindungsadresse zum MQTT Server, den wir benötigten, um die Daten zu versenden, sowohl die Zugangsdaten, damit wir uns an dem Server verifizieren können. Dadurch wird die Integrität der Datenerfassung sichergestellt.
+
+Weil Zugangsdaten von mehr als nur einem Klienten benutzt werden, erstellen wir eine Variable mit dem Namen \pythoninline{client_id}. Hier definieren wir eine eindeutige, für jeden unterschiedliche, Zeichenkette. Dadurch wird gewährleistet, dass die Daten bis zu dem Gerät, das diese versendet hat, zurückverfolgt werden können.
+
+Bei MQTT werden Nachrichten in so genannten \textit{topics} versendet. Ein alternativer Name wäre hier Kanal/Nachrichtenkanal. Klienten können an diesen \textit{topics} zuhören (\textit{subscribe}) oder senden (\textit{publish}). Dadurch lassen sich die Daten, ohne einer Verzögerung, zwischen Klienten verteilen. Wäre es eine simple Klient -> Server Nachricht, müssten sich die Klienten stetig die neuen Nachrichten von dem Server "holen". Das verzögert die Nachrichtenbereitstellung als auch ist es ein erhöhtes aufkommen von Anfragen an den Server, die immer einzeln verarbeitet werden müssen.
+
+\pythoninline{last_message} beinhaltet die Zeit in Sekunden, an dem die letzte Nachricht versendet wurde. \pythoninline{message_interval} kennzeichnet das Intervall in Sekunden, indem die Nachrichten versendet werden.
+
+Nun wollen wir eine Verbindung zu unserem MQTT Server aufbauen, dies geschieht in der \\
+\pythoninline{mqtt_connect()} Methode. Hier wird zuerst der Klient, mit den bereits zuvor definierten Parametern, initialisiert. Danach wird der Klient mithilfe von \pythoninline{client.connect()} gestartet. Dabei verbindet sich dieser mit den Zugangsdaten bei dem zuvor definierten Server. Im Anschluss senden wir eine Nachricht an die Konsole, dass sich der Klient nun mit dem Server verbunden hat. Aufgrund dessen das wir diesen Klienten später benötigen, um Nachrichten an den Server zu versenden oder bestimmte \textit{topics} zu \textit{subscriben}, geben wir den Klienten am Ende als Parameter, in der Methode, zurück.
+
+Aufgrund dessen, das eine Verbindung mit einem Server nicht immer aufrecht erhalten kann, weil Server, Klienten \& Netzwerkverbindungen ausfallen können, implementieren wir eine Methode, die dieses Problem automatisch beheben kann. Diese Logik implementieren wir in der Methode \pythoninline{restart_and_reconnect()}. Hier senden wir eine Nachricht an die Konsole, um z.B. dem Administrator bei einer Investigation mitzuteilen, dass da ein Fehler aufgetreten ist. Nach dieser Nachricht warten wir 10 Sekunden \& versuchen die Maschine mit \pythoninline{machine.reset()} zurück zu setzen. Diese Logik die dadurch umgesetzt wird, ist die selbe, wie als würde man den \textit{RESET}-Button auf dem \textit{ESP32} betätigen.
+
+Wir wollen später im Quelltext mehrmals eine Nachricht an die bereits definierte \textit{topic} senden. Damit wir das nicht öfter schreiben, habe ich die Methode \pythoninline{send_message(message)} deklariert. Hierbei führen wir die Nachrichtenübermittlung in einem Try-Catch aus, damit wir mögliche \pythoninline{OSError} abfangen können \& diese separat behandeln können.
+
+Nachdem wir den Try-Catch Block deklariert haben, versenden wir die Nachricht an den MQTT-Server. Dies geschieht durch folgenden Code \pythoninline{client.publish(topic_pub, message)}. Danach setzen wir die aktuelle Zeit (mit \pythoninline{time.time()}) auf die \pythoninline{last_message} Variable. Sollte bei diesen Prozess ein Fehler von dem Typen \pythoninline{OSError} auftreten, wird dieser abgefangen und die zuvor definierte Methode zur Behebung von 
