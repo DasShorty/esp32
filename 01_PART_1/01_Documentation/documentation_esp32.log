@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (MiKTeX 25.12) (format=lualatex 2026.3.1)  3 MAR 2026 16:31
+This is LuaHBTeX, Version 1.24.0 (MiKTeX 25.12) (format=lualatex 2026.3.1)  3 MAR 2026 17:34
  restricted system commands enabled.
 **documentation_esp32.tex
 (./documentation_esp32.tex
@@ -628,127 +628,142 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 \openout4 = documentation_esp32.toc
 
 warning  (pdf backend): ignoring duplicate destination with the name 'page.1'
-[1] [2]
-<assets/ESP32_Structure.pdf, id=168, 791.8383pt x 519.86218pt>
+[1]
+<assets/gpio-pin-theory.png, id=164, 255.62167pt x 183.887pt>
+File: assets/gpio-pin-theory.png Graphic file (type png)
+<use assets/gpio-pin-theory.png>
+Package luatex.def Info: assets/gpio-pin-theory.png  used on input line 105.
+(luatex.def)             Requested size: 433.91139pt x 312.12672pt.
+ [2<./assets/gpio-pin-theory.png>]
+<assets/ESP32-UART-communication.jpg, id=171, 831.105pt x 576.1525pt>
+File: assets/ESP32-UART-communication.jpg Graphic file (type jpg)
+<use assets/ESP32-UART-communication.jpg>
+Package luatex.def Info: assets/ESP32-UART-communication.jpg  used on input lin
+e 114.
+(luatex.def)             Requested size: 443.57787pt x 307.50446pt.
+ [3<./assets/ESP32-UART-communication.jpg>]
+<assets/i2c-schema.jpg, id=177, 1463.4675pt x 849.1725pt>
+File: assets/i2c-schema.jpg Graphic file (type jpg)
+<use assets/i2c-schema.jpg>
+Package luatex.def Info: assets/i2c-schema.jpg  used on input line 122.
+(luatex.def)             Requested size: 443.57677pt x 257.38405pt.
+<assets/SPI-communication.jpg, id=178, 752.8125pt x 199.74625pt>
+File: assets/SPI-communication.jpg Graphic file (type jpg)
+<use assets/SPI-communication.jpg>
+Package luatex.def Info: assets/SPI-communication.jpg  used on input line 129.
+(luatex.def)             Requested size: 443.59267pt x 117.6999pt.
+ [4<./assets/i2c-schema.jpg><./assets/SPI-communication.jpg>]
+<assets/ESP32_Structure.pdf, id=187, 791.8383pt x 519.86218pt>
 File: assets/ESP32_Structure.pdf Graphic file (type pdf)
 <use assets/ESP32_Structure.pdf>
-Package luatex.def Info: assets/ESP32_Structure.pdf  used on input line 112.
+Package luatex.def Info: assets/ESP32_Structure.pdf  used on input line 140.
 (luatex.def)             Requested size: 443.57848pt x 291.22395pt.
-<assets/esp32_top-view.jpg, id=169, 3018.27625pt x 2456.17625pt>
+<assets/esp32_top-view.jpg, id=188, 3018.27625pt x 2456.17625pt>
 File: assets/esp32_top-view.jpg Graphic file (type jpg)
 <use assets/esp32_top-view.jpg>
-Package luatex.def Info: assets/esp32_top-view.jpg  used on input line 118.
-(luatex.def)             Requested size: 3018.26892pt x 2456.17029pt.
-
-Overfull \hbox (2574.69044pt too wide) in paragraph at lines 118--119
- [][] 
- []
-
-
-LaTeX Warning: Float too large for page by 1853.91682pt on input line 120.
-
-[3<./assets/ESP32_Structure.pdf>] [4<./assets/esp32_top-view.jpg>]
+Package luatex.def Info: assets/esp32_top-view.jpg  used on input line 146.
+(luatex.def)             Requested size: 383.5471pt x 312.12672pt.
+<assets/esp32_side-view.jpg, id=189, 4095.3pt x 3083.52pt>
+File: assets/esp32_side-view.jpg Graphic file (type jpg)
+<use assets/esp32_side-view.jpg>
+Package luatex.def Info: assets/esp32_side-view.jpg  used on input line 152.
+(luatex.def)             Requested size: 414.49065pt x 312.12672pt.
+ [5<./assets/ESP32_Structure.pdf>] [6<./assets/esp32_top-view.jpg>] [7<./assets/
+esp32_side-view.jpg>]
 (C:/Users/anthony/AppData/Local/Programs/MiKTeX/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2025/11/14 1.11b listings language file
 )
-Underfull \hbox (badness 10000) in paragraph at lines 141--181
+Underfull \hbox (badness 10000) in paragraph at lines 174--214
 
  []
 
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 202--204
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 235--237
 
  []
 
-[6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 272--335
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 272--335
+[9] [10]
+Underfull \hbox (badness 10000) in paragraph at lines 305--368
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 272--335
+Underfull \hbox (badness 10000) in paragraph at lines 305--368
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 305--368
 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[8] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 353--358
+[11] [12]
+Underfull \hbox (badness 10000) in paragraph at lines 386--391
 
  []
 
-[10] [11]
-Overfull \hbox (14.84154pt too wide) in paragraph at lines 441--447
+[13] [14]
+Overfull \hbox (14.84154pt too wide) in paragraph at lines 474--480
 \TU/lmr/m/n/10 Wir haben die While-Schleife mit den \TU/lmtt/m/n/10 motion \TU/
 lmr/m/n/10 & \TU/lmtt/m/n/10 luminance \TU/lmr/m/n/10 vari-able aus den bei-den bere-its \TU/lmr/bx/n/10 vordefinierten
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 441--447
+Underfull \hbox (badness 10000) in paragraph at lines 474--480
 
  []
 
-[12] [13]
-Underfull \hbox (badness 10000) in paragraph at lines 521--564
+[15] [16]
+Underfull \hbox (badness 10000) in paragraph at lines 554--597
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 521--564
+Underfull \hbox (badness 10000) in paragraph at lines 554--597
 
  []
 
-[14]
-Underfull \hbox (badness 10000) in paragraph at lines 583--587
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 616--620
 
  []
 
-[15]
-Overfull \hbox (37.02641pt too wide) in paragraph at lines 648--649
+[18]
+Overfull \hbox (37.02641pt too wide) in paragraph at lines 681--682
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[16] [17] (./documentation_esp32.aux)
+[19] [20] (./documentation_esp32.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
-
-
-Package rerunfilecheck Warning: File `documentation_esp32.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `documentation_esp32.out':
-(rerunfilecheck)             Before: 969C69C1EF84B96170058FBBF927D50E;3773
-(rerunfilecheck)             After:  3B7D49A3B4DA8FDEFF648C0523EEFDF4;3744.
+Package rerunfilecheck Info: File `documentation_esp32.out' has not changed.
+(rerunfilecheck)             Checksum: 3B7D49A3B4DA8FDEFF648C0523EEFDF4;3744.
 )
 
 Here is how much of LuaTeX's memory you used:
- 15802 strings out of 476081
+ 15870 strings out of 476081
  125009,953878 words of node,token memory allocated
  498 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 7 attribute, 54 glue_spec,
  7 attribute_list, 1 write nodes
    avail lists: 1:1,2:2826,3:378,4:288,5:1965,6:128,7:7438,8:31,9:5455,10:7,11:2
 52
- 37674 multiletter control sequences out of 65536+600000
+ 37719 multiletter control sequences out of 65536+600000
  68 fonts using 8140183 bytes
  73i,9n,91p,713b,890s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/anthony/AppData/Local/Programs/MiKTeX/fonts/opentype/public/jetbrainsm
 ono-otf/jetbrainsmono-italic.otf><c:/users/anthony/appdata/local/programs/miktex
 /fonts/opentype/public/lm/lmroman7-italic.otf><c:/users/anthony/appdata/local/pr
-ograms/miktex/fonts/opentype/public/lm/lmmono10-regular.otf><c:/users/anthony/ap
-pdata/local/programs/miktex/fonts/opentype/public/lm/lmroman10-italic.otf><C:/Us
-ers/anthony/AppData/Local/Programs/MiKTeX/fonts/opentype/public/jetbrainsmono-ot
-f/jetbrainsmono-regular.otf><c:/users/anthony/appdata/local/programs/miktex/font
-s/opentype/public/lm/lmroman10-bolditalic.otf><c:/users/anthony/appdata/local/pr
+ograms/miktex/fonts/opentype/public/lm/lmmono10-regular.otf><C:/Users/anthony/Ap
+pData/Local/Programs/MiKTeX/fonts/opentype/public/jetbrainsmono-otf/jetbrainsmon
+o-regular.otf><c:/users/anthony/appdata/local/programs/miktex/fonts/opentype/pub
+lic/lm/lmroman10-bolditalic.otf><c:/users/anthony/appdata/local/programs/miktex/
+fonts/opentype/public/lm/lmroman10-italic.otf><c:/users/anthony/appdata/local/pr
 ograms/miktex/fonts/opentype/public/lm/lmroman10-regular.otf><c:/users/anthony/a
 ppdata/local/programs/miktex/fonts/opentype/public/lm/lmroman12-regular.otf><c:/
 users/anthony/appdata/local/programs/miktex/fonts/opentype/public/lm/lmroman7-bo
@@ -764,9 +779,9 @@ rs/anthony/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb
 cmsy10.pfb><C:/Users/anthony/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmsy7.pfb><C:/Users/anthony/AppData/Local/Programs/MiKTeX/fonts/type1/
 public/amsfonts/cm/cmsy9.pfb>
-Output written on documentation_esp32.pdf (18 pages, 1109592 bytes).
+Output written on documentation_esp32.pdf (21 pages, 3399742 bytes).
 
-PDF statistics: 647 PDF objects out of 1000 (max. 8388607)
- 311 named destinations out of 1000 (max. 1048576)
+PDF statistics: 672 PDF objects out of 1000 (max. 8388607)
+ 319 named destinations out of 1000 (max. 1048576)
  233 words of extra memory for PDF output out of 10000 (max. 100000000)
 

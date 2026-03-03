@@ -71,6 +71,7 @@ bottom=3cm
 	{\Huge \bfseries Wetterstation ESP32\\}
 	\vspace{1cm}
 	{\Large \itshape Dokumentation der Entwicklung einer Wetterstation mit dem ESP32\\}
+	{\Large \itshape Teil 1\\}
 	\vspace{3cm}
 	{\bfseries Eingereicht am: 03. März 2026\\}
 	\vspace{0.5cm}
@@ -97,9 +98,36 @@ bottom=3cm
 
 \section{Definition der Schnittstellen}
 \subsection[GPIO]{Der Port GPIO}
+GPIO steht für \textbf{General Purpose Input/Output}. Dabei kann dieser entweder ein Eingang- oder Ausgangssignal repräsentieren. Es wird dazu genutzt, um mit weiteren einfachen Komponenten zu kommunizieren oder  Steuern.
+\begin{figure}[htpb]
+	\centering
+	\caption{GPIO Aufbau}
+	\includegraphics[height=0.5\textheight, keepaspectratio]{gpio-pin-theory.png}
+\end{figure}
+In dieser Grafik wird der Aufbau mit einer LED \& dem GPIO Port beschrieben. Die LED kann dann per Anweisung ein Stromsignal erhalten oder nicht. Dabei kann ein GPIO Port ausschließlich unter Spannung stehen, oder nicht.
+\newpage
 \subsection[UART]{Der Port UART}
+UART steht für \textbf{Universal Asynchronous Receiver/Transmitter}. Es übersetzt Daten zwischen der seriellen \& paralleler Form.
+\begin{figure}[htpb]
+	\centering
+	\caption{UART Aufbau}
+	\includegraphics[height=0.5\textheight, width=\textwidth, keepaspectratio]{ESP32-UART-communication.jpg}
+\end{figure}
+\newpage
 \subsection[I2C]{Der Port I2C}
+I2C oder auch \textbf{Inter-Integrated-Circuit} ist ein serieller Kommunikationsbus, der 2 spezielle GPIO Pins benötigt \textbf{SDA}(Serial Data Line) \& \textbf{SCL}(Serial Clock Line). Dabei wird \textit{I2C} benötigt, um Daten schnell \& in großer Form zu übertragen, sowie die Uhrzeit synchron über Komponenten hinweg zu halten.
+\begin{figure}[htpb]
+	\centering
+	\caption{I2C Aufbau}
+	\includegraphics[height=0.5\textheight, width=\textwidth, keepaspectratio]{i2c-schema.jpg}
+\end{figure}
 \subsection[SPI]{Der Port SPI}
+SPI steht für \textbf{Serial Peripheral Interface} und ist ein synchrones serielles Datenprotokoll, das von Mikrocontrollern zur Kommunikation mit einem oder mehreren Peripheriegeräten verwendet wird. Beispielsweise kommuniziert der ESP32-Board mit einem Sensor, der SPI unterstützt, oder mit einem anderen Mikrocontroller.
+\begin{figure}[htpb]
+	\centering
+	\caption{SPI Aufbau}
+	\includegraphics[height=0.5\textheight, width=\textwidth, keepaspectratio]{SPI-communication.jpg}
+\end{figure}
 
 
 \newpage
@@ -108,15 +136,20 @@ bottom=3cm
 
 \begin{figure}[htbp]
 	\centering
-	% You can drop the extension and path if using \svgpath
-	\includegraphics[width=\textwidth]{ESP32_Structure.pdf}
-	\caption[width=\textwidth]{ESP32 Internal Structure}
+	\caption{ESP32 Internal Structure}
+	\includegraphics[width=\textwidth, keepaspectratio]{ESP32_Structure.pdf}
 \end{figure}
 
 \begin{figure}
 	\centering
-	\includegraphics{esp32_top-view.jpg}
 	\caption{ESP32 Topansicht}
+	\includegraphics[height=0.5\textheight, keepaspectratio]{esp32_top-view.jpg}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\caption{ESP32 Seitenansicht}
+	\includegraphics[height=0.5\textheight, keepaspectratio]{esp32_side-view.jpg}
 \end{figure}
 
 \newpage
