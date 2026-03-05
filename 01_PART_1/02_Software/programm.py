@@ -3,11 +3,6 @@ from dht import DHT22
 from time import sleep
 import json
 import ssd1306
-import network
-import gc
-import esp
-esp.osdebug(None)
-gc.collect()
 
 pin = SoftI2C(sda=Pin(21), scl=Pin(22))
 display = ssd1306.SSD1306_I2C(128, 64, pin)
@@ -50,48 +45,6 @@ def display_text(lineOne,lineTwo,lineThree,lineFour):
     display.text(lineFour, 0, 40)
     display.show()
 
-wlan = network.WLAN()
-wlan.active(True)
-wlan.connect('ssid', 'psk')
-
-mqtt_server = 'mosquitto.nodered-fi.ipv64.net'
-mqtt_user = 'FI'
-mqtt_pass = 'FI'
-
-last_message = 0
-message_interval = 5
-
-client_id = ubinascii.hexlify(machine.unique_id())
-topic_pub = b'Met/FI/Timmel'
-
-def mqtt_connect():
-    client = MQTTClient(
-            client_id, 
-            mqtt_server, 
-            user=mqtt_user, 
-            password=mqtt_pass)
-    client.connect()
-    print('Connected to %s MQTT broker' % (mqtt_server))
-    return client
-
-def restart_and_reconnect():
-    print('Failed to connect to MQTT broker. Reconnecting...')
-    time.sleep(10)
-    machine.reset()
-
-def send_message(message):
-    try:
-        client.check_msg()
-        client.publish(topic_pub, message)
-        last_message = time.time()
-    except OSError as e:
-        restart_and_reconnect()
-
-def can_send_message():
-    return (time.time() - last_message) > message_interval
-
-client = mqtt_connect()
-
 while True:
     temp, humid = get_device_temp_and_humid()
     set_lights_for_temp(temp)
@@ -112,9 +65,6 @@ while True:
     }
     
     json_object = json.dumps(raw_json_object)
-    
-    if can_send_message():
-        send_message(json_object)
     
     print(json_object)
     sleep(1)
