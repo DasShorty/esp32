@@ -57,7 +57,6 @@
 \begin{document}
 	\maketitle
 	\tableofcontents
-	\lstlistoflistings
 	\cleardoublepage
 	\part{Einführung}
 	In dem ersten Teil dieser Dokumentation beschäftigen wir uns mit dem ersten Teil der Aufgabe aus dem Unterricht LF7. In den nächsten Seiten wird Ihnen das Projekt \textit{Wetterstation ESP32} im ersten Teil schriftlich vorgestellt. Dabei werden wir uns zuerst die benötigten Hardwarekomponenten anschauen, danach folgt die Verkabelung dieser Komponenten mit dem \textit{ESP32} \& am Ende schauen wir uns die Umsetzung in dem Quelltext an.
@@ -116,9 +115,29 @@
 		\label{fig:esp32side-view}
 	\end{figure}
 	
-	\part{Aufgaben}
-	In den folgenden Aufgaben werden wir uns an die Aufgabenbeschreibung \textit{Projekt FI24\_Teil 1.pdf} \& \textit{Projekt FI24\_Teil 1\_2.pdf} halten. Dabei wurde ebenfalls eine \textit{Linkliste.pdf} Datei bereitgestellt, die bereits die benötigten Informationen für dieses Projekt beherbergt.
-	Innerhalb der Aufgaben werden wir uns immer wieder mit diesen Dateien \& deren Inhalten auseinandersetzen.
+	\section{Programmierung des ESP32}
+	Damit der ESP32 \& die anderen Komponenten miteinander Kommunizieren kann sowie die Weitergabe der Daten an externe Dienste, müssen diese Funktionen zum Teil manuell als Programmiercode geschrieben werden. Hierbei benutzten wir eine einfachere Variante, indem wir Python als Programmiersprache verwenden. Zusammen mit der Erweiterung für Microcontroller namens MicroPython können wir den ESP32 in einfachen Schritten anleiten, bestimmte Aufgaben zu erledigen.
+	
+	\subsection{Klassen}
+	Bestimmte Klassen werden in den Code-Snippets immer wieder vorkommen. Dabei handelt es sich um wesentliche Grundfunktionen von Micropython oder Python an sich.
+	Klassen die nicht in dieser Auflistung sind, werden in der Aufgabe, in der diese das erste mal genutzt werden, erklärt.
+	
+	\subsubsection{Pin}
+	Die \texttt{Pin} Klasse wird in Micropython verwendet, um eine Schnittstelle zwischen dem ESP32 \& der Komponente auf dem Steckbrett zu deklarieren.
+	Eine Deklaration eines Pins sieht wie folgend aus:
+	\begin{lstlisting}
+	PIN_VALUE = 1
+	PIN_IO = Pin.OUT
+	PIN_DRIVE = Pin.DRIVE_0
+	pin = Pin(PIN_VALUE, PIN_IO, drive=PIN_DRIVE)
+	\end{lstlisting}
+	\begin{enumerate}
+		\item \texttt{PIN\_VALUE} => GPIO Nummer des Pins. Zusehen ist diese auf der Abbildung \ref{fig:esp32-pins}
+		\item \texttt{PIN\_IO} => I/O Richtung des Pins. Hierbei wählt man zwischen \texttt{Pin.IN} (\textit{Eingehend}) oder \texttt{Pin.OUT} (\textit{Ausgehend}). Der Pin agiert dann ausschließlich in diese Richtung.
+		\item \texttt{PIN\_DRIVE} => Die Ausgabe von der Stromstärke in 4 verschiedenen Stufen.  (\textbf{Optional})
+	\end{enumerate}
+	
+	Die offizielle Dokumentation befindet sich auf der \hyperref{https://docs.micropython.org/en/latest/esp32/quickref.html#pins-and-gpio}{micropython}{MicroPython Pin \& GPIO}{MicroPython} Seite. Dort befindet sich eine ausführliche Erklärung der verschiedenen Variablen für die Erstellung einer Instanz der \texttt{Pin} Klasse.
 	
 	\begin{figure}[h]
 		\centering
@@ -126,6 +145,16 @@
 		\caption[Pinverteilung an dem ESP32]{In dieser Abbildung sehen Sie die Verteilen der Pins auf dem ESP32. In den folgenden Tabellen innerhalb der Bauelemente Sektion, werden Referenzen zu dieser Übersicht gemacht.}
 		\label{fig:esp32-pins}
 	\end{figure}
+	
+	\subsection{Funktionen}
+	In unserer Anwendung benutzen wir ebenfalls vordefinierte Funktionen, aus Micropython oder Python an sich.
+	
+	\subsubsection{sleep}
+	Die \texttt{sleep} Funktion ermöglicht uns, den Prozess für eine bestimmte Zeit anzuhalten
+	
+	\part{Aufgaben}
+	In den folgenden Aufgaben werden wir uns an die Aufgabenbeschreibung \textit{Projekt FI24\_Teil 1.pdf} \& \textit{Projekt FI24\_Teil 1\_2.pdf} halten. Dabei wurde ebenfalls eine \textit{Linkliste.pdf} Datei bereitgestellt, die bereits die benötigten Informationen für dieses Projekt beherbergt.
+	Innerhalb der Aufgaben werden wir uns immer wieder mit diesen Dateien \& deren Inhalten auseinandersetzen.
 	
 	
 	\chapter{Aufgabe 1}
@@ -193,14 +222,10 @@
 	\newpage
 	\section[Programmcode]{Programmcode für den ESP32}
 	\begin{lstlisting}
-	def get_device_temp_and_humid():
-		dht_device = DHT22(Pin(4, Pin.IN))
-		dht_device.measure()
-		temp = dht_device.temperature()
-		humid = dht_device.humidity()
-	
-		return temp, humid
+	dht_device = DHT22(Pin(4, Pin.IN))
 	\end{lstlisting}
+	Bevor die Daten aus dem Modul auslesen können, müssen wir zuerst die Verbindung zu diesem aufbauen. Dabei definieren wir das \texttt{dht\_device} als eine Instanz aus der Klasse \texttt{DHT22}. Diese benötigt jedoch bei der Initialisierung eine Instanz der \texttt{Pin} Klasse. Hierbei müssen wir die  
+	
 	Mithilfe dieser Funktion, ist es uns möglich, die \textbf{Temperatur} und \textbf{Luftfeuchtigkeit} an dem \textbf{aktuellen Ort} zu bestimmen. Dafür sendet das Modul \textit{DHT22} seine Daten an den Pin \textbf{G4}, diesen aben wir zuvor Pinverteilung ESP32 definiert.
 	
 	Durch \textbf{DHT22} aus der Datei \textbf{dht} erhalten wir die Möglichkeit, Daten über eine Erweiterung des Protokolls abzugreifen. Dafür haben wir den Input-Pin der DHT22 Klasse \texttt{DHT22(Pin(4, Pin.IN))} bei der Initialisierung \textbf{übergeben}. Im Anschluss ist es uns nun möglich, eine Messung \textbf{mithilfe} von \texttt{dht\_device.measure()} können wir das Modul \textbf{auffordern}, eine Messung der Temperatur sowie Luftfeuchtigkeit vorzunehmen. Im Anschluss \textbf{erhalten} wir die Temperatur sowie Luftfeuchtigkeit über die jeweilige Methode des Objektes und geben diese am Ende der Funktion als \texttt{Pair} zurück.
