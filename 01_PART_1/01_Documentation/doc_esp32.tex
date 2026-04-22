@@ -1,6 +1,6 @@
 % !TeX spellcheck = german
 \documentclass[9pt,a4paper]{report}
-\usepackage[T1]{fontenc}    
+\usepackage[T1,EU1]{fontenc}    
 \usepackage[utf8]{inputenc} 
 \usepackage[ngerman]{babel}
 
@@ -64,7 +64,7 @@
 	\chapter{Pinarten des ESP32}
 	In diesem Projekt verwenden wir mehrere unterschiedliche so genannte \textbf{Pins}. Dies sind spezielle Arten von Anschlüssen, die natürlich auch unterschiedlichen Zwecken dienen. Hier werden wir auf eine Handvoll eingehen, die auch tatsächlich im Projekt genutzt werden. Dabei unterscheiden sich diese immer in der Art \& Weise, wie Daten von der Komponente \& dem \textit{ESP32} übertragen werden.
 	\section{GPIO}
-	GPIO steht für \textbf{General Purpose Input/Output}. Dabei kann dieser entweder ein Eingang- oder Ausgangssignal repräsentieren. Es wird dazu genutzt, um mit weiteren einfachen Komponenten zu kommunizieren oder Steuern.
+	GPIO steht für \textbf{General Purpose Input/Output}. Dabei kann dieser entweder ein Eingangs- oder Ausgangssignal repräsentieren. Es wird dazu genutzt, um mit weiteren einfachen Komponenten zu kommunizieren oder Steuern.
 	
 	\begin{figure}[h]
 		\centering
@@ -118,6 +118,7 @@
 	\section{Programmierung des ESP32}
 	Damit der ESP32 \& die anderen Komponenten miteinander Kommunizieren kann sowie die Weitergabe der Daten an externe Dienste, müssen diese Funktionen zum Teil manuell als Programmiercode geschrieben werden. Hierbei benutzten wir eine einfachere Variante, indem wir Python als Programmiersprache verwenden. Zusammen mit der Erweiterung für Microcontroller namens MicroPython können wir den ESP32 in einfachen Schritten anleiten, bestimmte Aufgaben zu erledigen.
 	
+	\newpage
 	\subsection{Klassen}
 	Bestimmte Klassen werden in den Code-Snippets immer wieder vorkommen. Dabei handelt es sich um wesentliche Grundfunktionen von Micropython oder Python an sich.
 	Klassen die nicht in dieser Auflistung sind, werden in der Aufgabe, in der diese das erste mal genutzt werden, erklärt.
@@ -146,11 +147,24 @@
 		\label{fig:esp32-pins}
 	\end{figure}
 	
+	\newpage
 	\subsection{Funktionen}
 	In unserer Anwendung benutzen wir ebenfalls vordefinierte Funktionen, aus Micropython oder Python an sich.
 	
 	\subsubsection{sleep}
-	Die \texttt{sleep} Funktion ermöglicht uns, den Prozess für eine bestimmte Zeit anzuhalten
+	Die \texttt{sleep} Funktion ermöglicht uns, den Prozess für eine bestimmte Zeit anzuhalten.
+	\begin{lstlisting}
+	sleep(1)
+	\end{lstlisting}
+	Hierbei pausieren wir den Prozess für 1 Sekunde.
+	
+	\subsubsection{print}
+	Die \texttt{print} Funktion gibt uns Text in der Befehlszeile oder Log aus. Dadurch können wir Informationen an den Administrator oder Entwickler der Anwendung senden.
+	\begin{lstlisting}
+	hello = "Hallo Welt"
+	print(hello)
+	\end{lstlisting}
+	Sollten diese 2 Zeilen ausgeführt werden, würde in der Befehlszeile folgendes stehen: \texttt{Hallo Welt}.
 	
 	\part{Aufgaben}
 	In den folgenden Aufgaben werden wir uns an die Aufgabenbeschreibung \textit{Projekt FI24\_Teil 1.pdf} \& \textit{Projekt FI24\_Teil 1\_2.pdf} halten. Dabei wurde ebenfalls eine \textit{Linkliste.pdf} Datei bereitgestellt, die bereits die benötigten Informationen für dieses Projekt beherbergt.
@@ -193,7 +207,7 @@
 	\end{table}
 	\renewcommand{\arraystretch}{1}
 	\newline
-	\newline
+	\newpage
 	\textbf{DHT22}
 	\newline
 	Das Erweiterungsmodul \textit{DHT22} ist ein Modul, was es \textbf{ermöglicht}, die Raumtemperatur sowie die Luftfeuchtigkeit in der Umgebung \textbf{festzustellen}.
@@ -226,11 +240,17 @@
 	\end{lstlisting}
 	Bevor die Daten aus dem Modul auslesen können, müssen wir zuerst die Verbindung zu diesem aufbauen. Dabei definieren wir das \texttt{dht\_device} als eine Instanz aus der Klasse \texttt{DHT22}. Diese benötigt jedoch bei der Initialisierung eine Instanz der \texttt{Pin} Klasse. Hierbei müssen wir die  
 	
-	Mithilfe dieser Funktion, ist es uns möglich, die \textbf{Temperatur} und \textbf{Luftfeuchtigkeit} an dem \textbf{aktuellen Ort} zu bestimmen. Dafür sendet das Modul \textit{DHT22} seine Daten an den Pin \textbf{G4}, diesen aben wir zuvor Pinverteilung ESP32 definiert.
+	Mithilfe dieser Funktion, ist es uns möglich, die \textbf{Temperatur} und \textbf{Luftfeuchtigkeit} an dem \textbf{aktuellen Ort} zu bestimmen. Dafür sendet das Modul \textit{DHT22} seine Daten an den Pin \textbf{G4}, diesen haben wir zuvor bei der Pinverteilung ESP32 definiert.
 	
 	Durch \textbf{DHT22} aus der Datei \textbf{dht} erhalten wir die Möglichkeit, Daten über eine Erweiterung des Protokolls abzugreifen. Dafür haben wir den Input-Pin der DHT22 Klasse \texttt{DHT22(Pin(4, Pin.IN))} bei der Initialisierung \textbf{übergeben}. Im Anschluss ist es uns nun möglich, eine Messung \textbf{mithilfe} von \texttt{dht\_device.measure()} können wir das Modul \textbf{auffordern}, eine Messung der Temperatur sowie Luftfeuchtigkeit vorzunehmen. Im Anschluss \textbf{erhalten} wir die Temperatur sowie Luftfeuchtigkeit über die jeweilige Methode des Objektes und geben diese am Ende der Funktion als \texttt{Pair} zurück.
 	\newline
 	\begin{lstlisting}
+	def get_device_temperature_and_humidity():
+		dht_device.measure()
+		temp = dht_device.temperature()
+		humid = dht_device.humidity()
+		return temp, humid
+		
 	while True:
 		temp, humid = get_device_temp_and_humid()
 	
@@ -258,14 +278,14 @@
 	from time import sleep
 	import json
 	
-	def get_device_temp_and_humid():
-		dht_device = DHT22(Pin(4, Pin.IN))
+	dht_device = DHT22(Pin(4, Pin.IN))
+	
+	def get_device_temperature_and_humidity():
 		dht_device.measure()
 		temp = dht_device.temperature()
 		humid = dht_device.humidity()
-	
-	return temp, humid
-	
+		return temp, humid
+
 	while True:
 		temp, humid = get_device_temp_and_humid()
 
@@ -368,47 +388,27 @@
 	Die Stromversorgung des \textit{LM393} geht über den \textbf{VCC} Pin des Bauteils, dieser ist mit der Stromversorgung von dem \textbf{3V3} Pin des \textit{ESP32} verbunden.
 	Der \textbf{GND} Pin des Bauteils, ist mit der Masse \textbf{GND} des \textit{ESP32} zusammengeschlossen, damit die Schaltung elektrotechnisch Funktionstüchtig werden kann.
 	\newpage
-	\section{Programmcode}
+	\section{Programmcode}	
 	\subsection{Programmcode für AM312}
 	\begin{lstlisting}
+	motion_detector = Pin(16, Pin.IN)
+	motion_led = Pin(15, Pin.OUT, drive=Pin.DRIVE_0)
+	
 	def get_motion():
-		pir_pin = Pin(16, Pin.IN)
-		return bool(pir_pin.value())
+		return bool(motion_detector.value())
 	\end{lstlisting}
-	Diese Funktion gibt den \textbf{aktuellen} Wert (\texttt{True}/\texttt{False}) zurück, ob der Bewegungsmelder \textit{AM312}, \textbf{eine Bewegung} innerhalb von 100° zwischen 3-5 Metern \textbf{wahrgenommen} hat.
-	Sollte \textbf{keine} Bewegung wahrgenommen sein, gibt dieser ein \texttt{False} zurück. Die Methode \texttt{pir\_pin.value()} gibt jedoch eine Zahl (\textbf{1} oder \textbf{0}) zurück. Damit diese jedoch \textbf{besser Nachvollziehbar} im Programmcode ist, wird diese zu einem Boolean \textbf{gecastet}. Dadurch wird \textbf{sichergestellt}, dass die Erkennung von einer Bewegung \textbf{nur 2} unterschiedliche Zustände haben kann.
-	\newline
-	\newline
-	Für die LED definieren wir außerhalb einer Funktion folgendes:
-	\begin{lstlisting}
-	led = Pin(15, Pin.OUT, drive=Pin.DRIVE_0)
-	\end{lstlisting}
-	Hierbei \textbf{definieren} wir den \textbf{GPIO15} Pin, als Ausgangspin mit einem \textbf{maximalen} Vorwiderstand, damit wir das LED Bauteil nicht beschädigen.
+	In Zeile 1 deklarieren wir den Motion Detector auf dem Pin \textbf{16}. Darunter, in Zeile 2, deklarieren wir uns eine LED, mit dem Pin \textbf{15}, diese wird als Ausgang mit einem Vorwiderstand gesetzt.
+	Innerhalb der Funktion \texttt{get\_motion()}, rufen wir den Motion Detector auf \& überprüfen damit, ob die Variable auf der Funktion \texttt{motion\_detector.value()} entweder \textbf{1} oder \textbf{0} beträgt. Damit wir eine bessere Überprüfung gewährleisten können, erzwingen wir die Variable, die vorher eine Ganzzahl war, zu einem booleschen Wert. Dadurch kann diese nur noch 2 verschiedene Zustände annehmen. Als Ganzzahl können mehr als nur 2 unterschiedliche Zustände zugewiesen werden. Um eine Fehleranfälligkeit zu vermeiden, wurde deshalb der Wert auf einen booleschen Wert abgeändert.
 	\subsection{Programmcode für LM393}
 	\begin{lstlisting}
-	def get_luminance(gamma=0.7, rl10_kohm=50, fixed_resistor_ohm=2000):
+	adc_luminance_meter = ADC(Pin(34, Pin.IN))
 	
-		pin = ADC(Pin(34, Pin.IN))
-		pin.atten(ADC.ATTN_11DB)
-	
-		V_REF = 3.3 
-		MAX_ADC = 4095
-	
-		raw_value = pin.read() 
-	
-		voltage_out = raw_value / MAX_ADC * V_REF
-	
-		if voltage_out == 0:
-			return 0
-	
-		resistance_ldr = fixed_resistor_ohm * (V_REF - voltage_out) / voltage_out
-	
-		rl10_ohm = rl10_kohm * 1000 
-	
-		basis = (rl10_ohm * pow(10, gamma) / resistance_ldr)
-		exponent = 1 / gamma
-	
-		return pow(basis, exponent)
+	def get_luminance():
+		gamma = 0.7
+		rl10 = 50
+		voltage = (adc_luminance_meter.read() / 4) / 1024 * 5
+		resistance = 2000 * voltage / (1 - voltage / 5)
+		return pow((rl10 * 1e3) * pow(10, gamma) / resistance, (1 / gamma))
 	\end{lstlisting}
 	Zuerst richten wir den Pin für den \textit{LM393} ein, indem wir die spezielle Klasse \texttt{ADC} dafür importieren und die Pinzuweisung dieser Klasse, im Constructor direkt übergeben.
 	Im nächsten Schritt, erweitern wir den Messbereich des Analog-Digital-Convertes (\textit{ADC}) auf \textbf{~3.3V} durch die Konstante \texttt{ADC.ATTN\_11DB}.
