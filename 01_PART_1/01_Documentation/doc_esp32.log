@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (MiKTeX 25.12) (format=lualatex 2026.3.1)  22 APR 2026 13:48
+This is LuaHBTeX, Version 1.24.0 (MiKTeX 25.12) (format=lualatex 2026.3.1)  24 APR 2026 18:39
  restricted system commands enabled.
 **doc_esp32.tex
 (./doc_esp32.tex
@@ -546,12 +546,12 @@ warning  (pdf backend): ignoring duplicate destination with the name 'page.1'
 
 ] [4]
 Kapitel 1.
-<assets/gpio-pin-theory.png, id=212, 255.62167pt x 183.887pt>
+<assets/gpio-pin-theory.png, id=247, 255.62167pt x 183.887pt>
 File: assets/gpio-pin-theory.png Graphic file (type png)
 <use assets/gpio-pin-theory.png>
 Package luatex.def Info: assets/gpio-pin-theory.png  used on input line 71.
 (luatex.def)             Requested size: 241.49895pt x 173.73483pt.
-<assets/i2c-schema.jpg, id=213, 1463.4675pt x 849.1725pt>
+<assets/i2c-schema.jpg, id=248, 1463.4675pt x 849.1725pt>
 File: assets/i2c-schema.jpg Graphic file (type jpg)
 <use assets/i2c-schema.jpg>
 Package luatex.def Info: assets/i2c-schema.jpg  used on input line 80.
@@ -559,14 +559,14 @@ Package luatex.def Info: assets/i2c-schema.jpg  used on input line 80.
 [5
 
 <./assets/gpio-pin-theory.png>]
-<assets/SPI-communication.jpg, id=220, 752.8125pt x 199.74625pt>
+<assets/SPI-communication.jpg, id=255, 752.8125pt x 199.74625pt>
 File: assets/SPI-communication.jpg Graphic file (type jpg)
 <use assets/SPI-communication.jpg>
 Package luatex.def Info: assets/SPI-communication.jpg  used on input line 90.
 (luatex.def)             Requested size: 345.0114pt x 91.54301pt.
  [6<./assets/i2c-schema.jpg><./assets/SPI-communication.jpg>]
 Kapitel 2.
-<assets/ESP32_Structure.pdf, id=228, 791.8383pt x 519.86218pt>
+<assets/ESP32_Structure.pdf, id=263, 791.8383pt x 519.86218pt>
 File: assets/ESP32_Structure.pdf Graphic file (type pdf)
 <use assets/ESP32_Structure.pdf>
 Package luatex.def Info: assets/ESP32_Structure.pdf  used on input line 97.
@@ -574,13 +574,13 @@ Package luatex.def Info: assets/ESP32_Structure.pdf  used on input line 97.
 [7
 
 <./assets/ESP32_Structure.pdf>]
-<assets/esp32_top-view.jpg, id=257, 3018.27625pt x 2456.17625pt>
+<assets/esp32_top-view.jpg, id=292, 3018.27625pt x 2456.17625pt>
 File: assets/esp32_top-view.jpg Graphic file (type jpg)
 <use assets/esp32_top-view.jpg>
 Package luatex.def Info: assets/esp32_top-view.jpg  used on input line 105.
 (luatex.def)             Requested size: 241.49895pt x 196.49811pt.
  [8<./assets/esp32_top-view.jpg>]
-<assets/esp32_side-view.jpg, id=263, 4095.3pt x 3083.52pt>
+<assets/esp32_side-view.jpg, id=298, 4095.3pt x 3083.52pt>
 File: assets/esp32_side-view.jpg Graphic file (type jpg)
 <use assets/esp32_side-view.jpg>
 Package luatex.def Info: assets/esp32_side-view.jpg  used on input line 113.
@@ -592,7 +592,7 @@ LaTeX Font Info:    Trying to load font information for EU1+lmtt on input line
 (C:/Users/anthony/AppData/Local/Programs/MiKTeX/tex/latex/euenc/eu1lmtt.fd
 File: eu1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<assets/esp32-pins.png, id=271, 1606.0pt x 1095.09125pt>
+<assets/esp32-pins.png, id=306, 1606.0pt x 1095.09125pt>
 File: assets/esp32-pins.png Graphic file (type png)
 <use assets/esp32-pins.png>
 Package luatex.def Info: assets/esp32-pins.png  used on input line 145.
@@ -653,15 +653,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 318--382
 
 [18
 
-] [19] [20] [21]
+] [19]
+Underfull \hbox (badness 10000) in paragraph at lines 419--425
+
+ []
+
+[20] [21]
 Kapitel 5.
 
-Underfull \hbox (badness 10000) in paragraph at lines 477--520
+Underfull \hbox (badness 10000) in paragraph at lines 474--517
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 477--520
+Underfull \hbox (badness 10000) in paragraph at lines 474--517
 
  []
 
@@ -671,25 +676,35 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [22
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 539--543
+Underfull \hbox (badness 10000) in paragraph at lines 534--538
 
  []
 
 
-Overfull \hbox (19.33998pt too wide) in paragraph at lines 539--543
+Overfull \hbox (19.33998pt too wide) in paragraph at lines 534--538
 \EU1/lmr/bx/n/10 Nachdem \EU1/lmr/m/n/10 die \EU1/lmtt/m/n/10 SSD1306\EU1/lmr/m
 /n/10 -Klasse nun ver-füg-bar ist, kann die Funk-ti-on \EU1/lmtt/m/n/10 display
 []text()
  []
 
-LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line 
-549.
-(C:/Users/anthony/AppData/Local/Programs/MiKTeX/tex/latex/lm/ot1lmtt.fd
-File: ot1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-[23] [24
+[23]
+Overfull \hbox (44.68001pt too wide) in paragraph at lines 575--579
+\EU1/lmr/m/n/10 Die Funk-ti-on \EU1/lmtt/m/n/10 handle[]lcd[]data[]display(tempe
+rature,humidity, motion, luminance)
+ []
 
-] [25] (./doc_esp32.aux
+
+Underfull \hbox (badness 10000) in paragraph at lines 575--579
+
+ []
+
+[24]
+Kapitel 6.
+[25
+
+] [26] [27
+
+] [28] (./doc_esp32.aux
 Package cleveref Info: loaded `ngerman' language definitions on input line 8.
 )
  ***********
@@ -697,43 +712,34 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
 Package rerunfilecheck Info: File `doc_esp32.out' has not changed.
-(rerunfilecheck)             Checksum: 6BB1A75DE1A4FC22CB8EE695B11FD1A8;4817.
+(rerunfilecheck)             Checksum: 87EC760C3452A49C3568555D9516B52E;5728.
 )
 
 Here is how much of LuaTeX's memory you used:
- 14482 strings out of 476081
- 195396,953878 words of node,token memory allocated
- 471 words of node memory still in use:
-   4 hlist, 1 vlist, 1 rule, 5 glue, 3 kern, 1 glyph, 9 attribute, 51 glue_spec,
+ 14518 strings out of 476081
+ 195392,953878 words of node,token memory allocated
+ 476 words of node memory still in use:
+   4 hlist, 1 vlist, 1 rule, 5 glue, 3 kern, 1 glyph, 9 attribute, 52 glue_spec,
  6 attribute_list, 1 write, 1 pdf_action nodes
-   avail lists: 2:2804,3:327,4:2332,5:2493,6:99,7:8747,8:16,9:6793,10:31,11:766
- 36475 multiletter control sequences out of 65536+600000
- 52 fonts using 4215007 bytes
+   avail lists: 2:3296,3:327,4:2968,5:2866,6:98,7:9341,8:1,9:8236,10:35,11:768
+ 36465 multiletter control sequences out of 65536+600000
+ 51 fonts using 4132807 bytes
  72i,10n,75p,693b,802s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{C:/Users/anthony/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rmtt.enc}<
-c:/users/anthony/appdata/local/programs/miktex/fonts/opentype/public/lm/lmroman1
-0-bolditalic.otf><c:/users/anthony/appdata/local/programs/miktex/fonts/opentype/
-public/lm/lmmono9-regular.otf><c:/users/anthony/appdata/local/programs/miktex/fo
-nts/opentype/public/lm/lmroman5-regular.otf><c:/users/anthony/appdata/local/prog
-rams/miktex/fonts/opentype/public/lm/lmmono10-regular.otf><c:/users/anthony/appd
-ata/local/programs/miktex/fonts/opentype/public/lm/lmroman10-italic.otf><c:/user
-s/anthony/appdata/local/programs/miktex/fonts/opentype/public/lm/lmroman10-regul
-ar.otf><c:/users/anthony/appdata/local/programs/miktex/fonts/opentype/public/lm/
-lmroman10-bold.otf><c:/users/anthony/appdata/local/programs/miktex/fonts/opentyp
-e/public/lm/lmroman12-bold.otf><c:/users/anthony/appdata/local/programs/miktex/f
-onts/opentype/public/lm/lmroman12-regular.otf><c:/users/anthony/appdata/local/pr
-ograms/miktex/fonts/opentype/public/lm/lmroman17-regular.otf><C:/Users/anthony/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users
-/anthony/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb>
-<C:/Users/anthony/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
-mr10.pfb><C:/Users/anthony/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
-onts/cm/cmr7.pfb><C:/Users/anthony/AppData/Local/Programs/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmsy10.pfb><C:/Users/anthony/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/anthony/AppData/Local/Programs/MiK
-TeX/fonts/type1/public/lm/lmtt9.pfb>
-Output written on doc_esp32.pdf (26 pages, 4453003 bytes).
+<c:/users/anthony/appdata/local/programs/miktex/fonts/opentype/public/lm/lmroman
+10-bolditalic.otf><c:/users/anthony/appdata/local/programs/miktex/fonts/opentype
+/public/lm/lmmono9-regular.otf><c:/users/anthony/appdata/local/programs/miktex/f
+onts/opentype/public/lm/lmroman5-regular.otf><c:/users/anthony/appdata/local/pro
+grams/miktex/fonts/opentype/public/lm/lmmono10-regular.otf><c:/users/anthony/app
+data/local/programs/miktex/fonts/opentype/public/lm/lmroman10-italic.otf><c:/use
+rs/anthony/appdata/local/programs/miktex/fonts/opentype/public/lm/lmroman10-regu
+lar.otf><c:/users/anthony/appdata/local/programs/miktex/fonts/opentype/public/lm
+/lmroman10-bold.otf><c:/users/anthony/appdata/local/programs/miktex/fonts/openty
+pe/public/lm/lmroman12-bold.otf><c:/users/anthony/appdata/local/programs/miktex/
+fonts/opentype/public/lm/lmroman12-regular.otf><c:/users/anthony/appdata/local/p
+rograms/miktex/fonts/opentype/public/lm/lmroman17-regular.otf>
+Output written on doc_esp32.pdf (29 pages, 4401985 bytes).
 
-PDF statistics: 583 PDF objects out of 1000 (max. 8388607)
- 201 named destinations out of 1000 (max. 1048576)
- 289 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 643 PDF objects out of 1000 (max. 8388607)
+ 252 named destinations out of 1000 (max. 1048576)
+ 345 words of extra memory for PDF output out of 10000 (max. 100000000)
 

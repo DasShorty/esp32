@@ -47,8 +47,9 @@ def get_device_temperature_and_humidity():
 def get_luminance():
     gamma = 0.7
     rl10 = 50
-    voltage = (adc_luminance_meter.read() / 4) / 1024 * 5
-    resistance = 2000 * voltage / (1 - voltage / 5)
+    ref_voltage = 3.3
+    voltage = (adc_luminance_meter.read() / 4) / 1024 * ref_voltage
+    resistance = 2000 * voltage / (1 - voltage / ref_voltage)
     return pow((rl10 * 1e3) * pow(10, gamma) / resistance, (1 / gamma))
 
 def get_motion():

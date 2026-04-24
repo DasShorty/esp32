@@ -396,9 +396,14 @@
 	
 	def get_motion():
 		return bool(motion_detector.value())
+		
+	def set_motion_led(motion):
+		motion_led.value(motion == True)
 	\end{lstlisting}
 	In Zeile 1 deklarieren wir den Motion Detector auf dem Pin \textbf{16}. Darunter, in Zeile 2, deklarieren wir uns eine LED, mit dem Pin \textbf{15}, diese wird als Ausgang mit einem Vorwiderstand gesetzt.
 	Innerhalb der Funktion \texttt{get\_motion()}, rufen wir den Motion Detector auf \& überprüfen damit, ob die Variable auf der Funktion \texttt{motion\_detector.value()} entweder \textbf{1} oder \textbf{0} beträgt. Damit wir eine bessere Überprüfung gewährleisten können, erzwingen wir die Variable, die vorher eine Ganzzahl war, zu einem booleschen Wert. Dadurch kann diese nur noch 2 verschiedene Zustände annehmen. Als Ganzzahl können mehr als nur 2 unterschiedliche Zustände zugewiesen werden. Um eine Fehleranfälligkeit zu vermeiden, wurde deshalb der Wert auf einen booleschen Wert abgeändert.
+	
+	Innerhalb der \texttt{set\_motion\_led(motion)} Funktion, setzen wir nun den LED-Status basierend auf dem booleschen Wert, der in dem Funktionskopf mitgegeben wird. Sollte dieser \texttt{True} sein, leuchtet die LED.
 	\subsection{Programmcode für LM393}
 	\begin{lstlisting}
 	adc_luminance_meter = ADC(Pin(34, Pin.IN))
@@ -406,34 +411,29 @@
 	def get_luminance():
 		gamma = 0.7
 		rl10 = 50
-		voltage = (adc_luminance_meter.read() / 4) / 1024 * 5
-		resistance = 2000 * voltage / (1 - voltage / 5)
+		ref_voltage = 3.3
+		voltage = (adc_luminance_meter.read() / 4) / 1024 * ref_voltage
+		resistance = 2000 * voltage / (1 - voltage / ref_voltage)
 		return pow((rl10 * 1e3) * pow(10, gamma) / resistance, (1 / gamma))
 	\end{lstlisting}
-	Zuerst richten wir den Pin für den \textit{LM393} ein, indem wir die spezielle Klasse \texttt{ADC} dafür importieren und die Pinzuweisung dieser Klasse, im Constructor direkt übergeben.
-	Im nächsten Schritt, erweitern wir den Messbereich des Analog-Digital-Convertes (\textit{ADC}) auf \textbf{~3.3V} durch die Konstante \texttt{ADC.ATTN\_11DB}.
-	Sollte diese Einstellung nicht vorgenommen werden, wäre die \textit{ADC} Spannung bis ca. \textbf{1.0V} präzise messbar.
+	Wir deklarieren uns zuerst 3 Konstanten, die wir in der späteren Rechnung wiederkehrend benötigen.
+	\texttt{gamma} Variable beschreibt, um wie viel sich der Widerstand bei jeder Einheit der Lichtänderung ändert. \texttt{rl10} Variable beschreibt die Menge an Widerstand von dem Fotowiderstand \textit{LM393} in kΩ. 
+	\texttt{ref\_voltage} ist die Variable für die Spannung ausgehend von dem \textit{ESP32}.
+	\newline
+	\newline
+	Um nun den Wert für die Spannung \texttt{voltage} zu berechnen, muss zuerst die \textbf{12-Bit} Ausgabe von dem Fotowiderstand in eine \textbf{10-Bit} umgewandelt werden, dies geschieht anhand von \texttt{/ 4}.
 	
-	Im Anschluss definieren wir 2 Konstanten für die Widerstandsberechnung \& Umrechnung der Spannung (Volt).
+	Im Anschluss konvertieren wir die Zahl mithilfe von \texttt{/ 1024 * ref\_voltage} in die Spannung, weil wir eine Anschlussspannung von \textbf{3,3V} haben.
 	
-	\texttt{V\_REF} ist hierbei die Referenzspannung von 3.3V, die das Erweiterungsmodul von dem ESP32 als Stromversorgung erhält.
+	In Zeile 8 kalkulieren wir den Widerstand \texttt{resistance}, indem wir einen 2kΩ Widerstand mal unsere aktuelle Spannung rechnen. Das Resultat wird im Anschluss durch das Ergebnis von \texttt{1 - voltage} durch \texttt{ref\_voltage} gerechnet.
 	
-	\texttt{MAX\_ADC} ist die Auflösung des analogen Signals. Dies wird hierbei auf \textbf{12-Bit} Auslösung gesetzt ($2^{21} - 1$).
+	Nun sind alle Vorkalkulationen abgeschlossen und der Lux Wert kann nun berechnet werden. Dafür brechen wir die Zeile 9 einmal auf.
 	
-	\texttt{raw\_value} erhält nun die analogen Daten des \textit{LM393}.
-	
-	\texttt{voltage\_out} ist die korrekte Umrechnung des \textit{12-Bit-Wertes} in Spannung (Volt).
-	Bevor wir mit der Widerstandrechnung anfangen dürfen, überprüfen wir, ob die Ausgehende Spannung \texttt{voltage\_out} gleich 0 ist, wen ja, geben wir direkt den Lux Wert 0 zurück, da bei einer ausgehenden Spannung von 0V kein Licht wahrgenommen werden kann, oder wird.
-	
-	Nun erfolgt die Widerstandsrechnung (R\_LDR = \texttt{resistance\_ldr}), dabei ist die Formel wie folgt $\textit{R\_LDR} = \textit{R\_fix} * \frac{\textit{V\_REF} - \textit{V\_out}}{\textit{V\_out}}$.
-	
-	Nach der Widerstandsrechnung, müssen wir, bevor wir die Lux berechnen können, die kOhm in Ohm umrechnen. Dafür rechnen wir die kOhm \texttt{rl10\_kohm} mit $* 1000$ und erhalten die \texttt{rl10\_ohm}.
-	
-	Jetzt ist der Weg frei, die Lux zu berechnen. Jedoch benötigen wir erst die Basis, das ist mit folgender Formel errechenbar. $(Rl10 * 10^{gamma} / \textit{R\_LDR})$
-	
-	Im Anschluss müssen wir den Exponenten berechnen, dies erfolgt über eine einfache Division $\textit{exponent} = 1 / gamma$.
-	
-	Der letzte Schritt, berechnen wir nun die Lux, indem wir die \texttt{basis} hoch \texttt{exponent} rechnen, das Ergebnis geben wir dann zurück.
+	\begin{enumerate}
+		\item (\texttt{rl10 * 1e0}) konvertiert die 50kΩ in 50,000Ω.
+		\item  \texttt{pow(10, gamma) / resistance} Teil der konstanten Skalierung für den 10-Lux-Referenzpunkt.
+		\item \texttt{pow(...,1/gamma)} Die Potenzfunktion, die verwendet wird, um den Lux-Wert aus dem Widerstandsverhältnis zu berechnen.
+	\end{enumerate}
 	
 	\subsection{Überarbeitung des while-loops}
 	Im Anschluss müssen wir den While-Loop mit den neuen Funktionen ergänzen.
@@ -445,10 +445,7 @@
 	
 		luminance = get_luminance()
 	
-		if motion:
-			led.value(1)
-		else:
-			led.value(0)
+		set_motion_led(motion)
 	
 		raw_json_object = {
 			"Temperatur": temp,
@@ -518,18 +515,16 @@
 	\end{table}
 	\renewcommand{\arraystretch}{1}
 	
-	\subsubsection{Vernetzung der Bauteile}
+	\subsection{Vernetzung der Bauteile}
 	Der \textit{ESP32} ist mit dem Pin \textbf{GPIO21} mit dem \textit{SSD1306} \textbf{SDA} Pin und der \textbf{GPIO22} mit dem \textit{SSD1306} \textbf{SCL} Pin verbunden.
 	Die Stromversorgung des \textit{SSD1306} geht über den \textbf{3.3V} Pin des Bauteils, dieser ist mit der Stromversorgung von dem \textbf{3V3} Pin des \textit{ESP32} verbunden.
 	Der \textbf{GND} Pin des Bauteils, ist mit der Masse \textbf{GND} des \textit{ESP32} zusammengeschlossen, damit die Schaltung elektrotechnisch Funktionstüchtig werden kann.
 	
 	\section{Programmcode}
 	\begin{lstlisting}
-	pin = SoftI2C(sda=Pin(21), scl=Pin(22))
-	display = ssd1306.SSD1306_I2C(128, 64, pin)
+	display = ssd1306.SSD1306_I2C(128, 64, SoftI2C(sda=Pin(21), scl=Pin(22)))
 	\end{lstlisting}
-	\texttt{pin} wird hier wie zuvor, mit der \textbf{Wrapper}-Klasse \texttt{SoftI2C} erzeugt. Dabei wird der \textit{sda} und \textit{scl} Pin definiert.
-	Die instanziierte Klasse, kann wird nun \textbf{erneut} wieder in eine Wrapper-Klasse \texttt{SSD1306\_I2C} übergeben. Dadurch erlangen wir die Möglichkeit, das LCD-Display \textit{SSD1306} ansprechen.
+	In dieser Zeile definieren wir eine Komponente mit mehreren Pin Anschlüssen. Dabei definieren wir zuerst die Breie \& Höhe des Bildschirms, im Anschluss deklarieren wir die Pins \texttt{sda} \& \texttt{scl}, damit wir Daten zwischen dem \textit{ESP32} \& dem \textit{SSD1306} senden können. 
 	
 	Die \texttt{SSD1306} Klasse ist \textbf{keine} vordefinierte Klasse aus einem der MicroPython Dateien, sondern diese ist \textbf{manuell} auf dem \textit{ESP32} hinterlegt.
 	Der Programmcode für \textbf{diese} Datei ist aufgrund der Größe \textbf{nicht} in das Dokument implementiert.
@@ -541,16 +536,93 @@
 	\newline
 	\textbf{Nachdem} die \texttt{SSD1306}-Klasse nun verfügbar ist, kann die Funktion \texttt{display\_text()} erstellt werden.
 	\begin{lstlisting}
-	def display_text(temp, humid):
+	def display_text(lineOne,lineTwo,lineThree,lineFour):
 		display.fill(0)
-		display.text("Temperatur", 0, 0)
-		display.text(str(temp) + " Grad", 0, 10)
-		display.text("Luftfeuchtigkeit", 0, 30)
-		display.text(str(humid) + " g/m^3", 0, 40)
+		display.text(lineOne, 0, 0)
+		display.text(lineTwo, 0, 10)
+		display.text(lineThree, 0, 30)
+		display.text(lineFour, 0, 40)
 		display.show()
 	\end{lstlisting}
-	Damit sich der Text, bei einem Update \textbf{nicht} überlappt, muss zuvor die Fläche \textbf{zurückgesetzt} werden. Das Zurücksetzen der Anzeigefläche passiert, indem wir eine schwarze Fläche \texttt{display.fill(0)} zeichnen. Im Anschluss schreiben wir die \textbf{Temperatur} \& \textbf{Luftfeuchtigkeit}, mit einem Versatz, auf den LCD-Monitor und aktualisieren die Anzeige mit \texttt{display.show()}.
+	Damit sich der Text, bei einem Update \textbf{nicht} überlappt, muss zuvor die Fläche \textbf{zurückgesetzt} werden. Das Zurücksetzen der Anzeigefläche passiert, indem wir eine schwarze Fläche \texttt{display.fill(0)} zeichnen. Im Anschluss schreiben wir die Information, welche wir aus dem Funktionskopf erhalten, auf den LCD-Monitor und aktualisieren die Anzeige mit \texttt{display.show()}.
+	\newpage
+	Im Anschluss müssen wir erneut die while-True Schleife bearbeiten, in dem wir die Daten dafür übergeben.
+	
+	\begin{lstlisting}
+	def handle_lcd_data_display(temperature, humidity, motion, luminance):
+		display_text(f"Temperatur: {temp}", f"Humidity: {humid}", f"Motion: {motion}", f"Lux: {luminance}")
+		
+	while True:
+		temp, humid = get_device_temperature_and_humidity()
+		handle_temperatue_led_lights(temp)
+		motion = get_motion()    
+		luminance = get_luminance()
+		set_motion_led(motion)
+		handle_lcd_data_display(temperature, humidity, motion, luminance)
+	
+		raw_json_object = {
+			"Temperatur": temp,
+			"Luftfeuchtigkeit": humid,
+			"Bewegung": motion,
+			"Helligkeit": luminance
+		}
+	
+		json_object = json.dumps(raw_json_object)
+	
+		print(json_object)
+		sleep(1)
+	\end{lstlisting}
+	Die Funktion \texttt{handle\_lcd\_data\_display(temperature,humidity, motion, luminance)} dient als Wrapper-Funktion zwischen der Datenübergabe in der While-Schleife \& umsetzenden Funktion \texttt{display\_text(...)}
+	\newline
+	\newline
+	In Zeile 10 rufen wir nun die Wrapper-Funktion auf und übergeben innerhalb des Aufrufs, die Daten an die Funktion.
+	
+	\chapter{Aufgabe 4}
+	\section{Anforderungen}
+	Ergänzen Sie Ihren Prototypen dahingehend, dass eine grüne, gelbe oder rote LED leuchten soll wenn die Temperatur >= 30 °C (rot), >= 25 °C und < 30 °C (gelb) oder <= 20 °C (grün) beträgt.
+	
+	\section{Hardware}
+	\subsection{Bauelemente}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{table}[h!]
+		\centering
+		\caption{Verteilung der Pin-Nutzung bei dem ESP32}
+		\label{tab:teil_4_steckbrett_esp32}
+		\begin{tabular}{|l|l|} 
+			\hline
+			Pin & Aufgabe \\
+			\hline
+			GND & Die Masse des ESP32 \\
+			GPIO 2 & Rote LED \\
+			GPIO 17 & Gelbe LED \\
+			GPIO 5 & Grüne LED \\
+			\hline
+		\end{tabular}
+	\end{table}
+	\renewcommand{\arraystretch}{1}
+	\subsection{Vernetzung der Bauteile}
+	Die LEDs sind mit GPIO Pins verbunden, damit diese später im Quelltext ansteuerbar sind.
+	
+	\newpage
+	\section{Programmcode}
+	\begin{lstlisting}
+	RED_LED_PIN = 2
+	ORANGE_LED_PIN = 17
+	GREEN_LED_PIN = 5
+		
+	led_red = Pin(RED_LED_PIN, Pin.OUT, drive=Pin.DRIVE_0)
+	led_orange = Pin(ORANGE_LED_PIN, Pin.OUT, drive=Pin.DRIVE_0)
+	led_green = Pin(GREEN_LED_PIN, Pin.OUT, drive=Pin.DRIVE_0)
+	
+	def set_temperature_lights(red_on, orange_on, green_on):
+		led_red.value(red_on)
+		led_orange.value(orange_on)
+		led_green.value(green_on)
+	\end{lstlisting}
+	
+	
 	
 	\part{Resultat}
 	Der \textit{ESP32} fungiert nun als zentrale Einheit zum Messen von Temperatur, Luftfeuchtigkeit \& Helligkeit. Ebenfalls nimmt er Bewegungen war \& gibt diese anhand einer LED-Lampe (\textit{In unserem Aufbau, eine weiße LED}) wider. Die Temperatur \& Luftfeuchtigkeit wird auf einem kleinen LCD-Bildschirm mithilfe von einer I2C Verbindung an diesen geschickt.
+	
 \end{document}
