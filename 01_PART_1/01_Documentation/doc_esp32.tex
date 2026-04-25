@@ -2,10 +2,18 @@
 \documentclass[9pt,a4paper]{report}
 \usepackage[T1,EU1]{fontenc}    
 \usepackage[utf8]{inputenc} 
-\usepackage[ngerman]{babel}
+\usepackage{geometry}
+\geometry{
+	letterpaper, % or a4paper
+	total={6.5in, 8.75in}, % total width and height of the text area
+	top=1.2in,
+	left=1in,
+	footskip=0.5in
+}
 
 \usepackage[bookmarks=true, pdfborder={0 0 0}]{hyperref}
-\usepackage[ngerman]{cleveref}
+
+\usepackage[ngerman]{babel,cleveref}
 
 \hypersetup{
 	colorlinks=true,      % Rahmen entfernen und Text einfärben
@@ -59,7 +67,9 @@
 	\tableofcontents
 	\cleardoublepage
 	\part{Einführung}
-	In dem ersten Teil dieser Dokumentation beschäftigen wir uns mit dem ersten Teil der Aufgabe aus dem Unterricht LF7. In den nächsten Seiten wird Ihnen das Projekt \textit{Wetterstation ESP32} im ersten Teil schriftlich vorgestellt. Dabei werden wir uns zuerst die benötigten Hardwarekomponenten anschauen, danach folgt die Verkabelung dieser Komponenten mit dem \textit{ESP32} \& am Ende schauen wir uns die Umsetzung in dem Quelltext an.
+	Im Rahmen des ersten Teils dieser Dokumentation setzen wir uns intensiv mit der initialen Aufgabenstellung aus dem Unterricht des Lernfeldes 7 (LF7) auseinander. Auf den nachfolgenden Seiten wird Ihnen das Projekt \textit{Wetterstation ESP32} in seiner ersten Phase detailliert und in schriftlicher Form präsentiert, um einen fundierten Überblick über die Zielsetzung und den Aufbau zu geben.
+	
+	Die Struktur dieser Ausarbeitung orientiert sich dabei eng am praktischen Projektablauf: Zunächst widmen wir uns der Auswahl und Spezifikation der benötigten Hardwarekomponenten, die das technische Fundament unseres Systems bilden. Darauf aufbauend wird die präzise Verkabelung und Verschaltung dieser Module mit dem Mikrocontroller \textit{ESP32} erläutert, um eine fehlerfreie Kommunikation zwischen der Sensorik und der Steuereinheit zu gewährleisten. Den Abschluss bildet eine detaillierte Betrachtung der softwareseitigen Umsetzung im Quelltext, in der wir die Programmierlogik sowie die Ansteuerung der einzelnen Komponenten näher beleuchten.
 	
 	\chapter{Pinarten des ESP32}
 	In diesem Projekt verwenden wir mehrere unterschiedliche so genannte \textbf{Pins}. Dies sind spezielle Arten von Anschlüssen, die natürlich auch unterschiedlichen Zwecken dienen. Hier werden wir auf eine Handvoll eingehen, die auch tatsächlich im Projekt genutzt werden. Dabei unterscheiden sich diese immer in der Art \& Weise, wie Daten von der Komponente \& dem \textit{ESP32} übertragen werden.
@@ -554,7 +564,6 @@
 		
 	while True:
 		temp, humid = get_device_temperature_and_humidity()
-		handle_temperatue_led_lights(temp)
 		motion = get_motion()    
 		luminance = get_luminance()
 		set_motion_led(motion)
@@ -619,10 +628,60 @@
 		led_orange.value(orange_on)
 		led_green.value(green_on)
 	\end{lstlisting}
+	In den ersten 3 Zeilen deklarieren wir die Pin Nummern für die verschiedenen LEDs. In den darauffolgenden Zeilen 5-7 erzeugen wir ein Pin-Objekt mit den Pin Nummern, als Ausgangspin \& mit dem maximalen Widerstand, um nicht die LEDs zu zerstören.
 	
+	Die Funktion \texttt{set\_temperature\_lights(red\_on, orange\_on, green\_on)} setzt den Status für jede einzelne LED.
+	
+	\begin{lstlisting}
+	def handle_temperatue_led_lights(temp):
+		if temp >= 25:
+			set_temperature_lights(1,0,0)
+		elif temp >= 25 and temp >= 20:
+			set_temperature_lights(0,1,0)
+		else:
+			set_temperature_lights(0,0,1)
+	\end{lstlisting}
+	Nun fügen wir die Logik mit der \texttt{handle\_temperature\_led\_lights} ein. Sollte die Temperatur über 25°C liegen, geht die rote LED an. Liegt die Temperatur zwischen 25°C \& 20°C, geht die gelbe LED an. Sollten keiner dieser Zustände zutreffen, geht die grüne LED an.
+	\newpage
+	\begin{lstlisting}
+	while True:
+		temp, humid = get_device_temperature_and_humidity()
+		handle_temperatue_led_lights(temp)
+		motion = get_motion()    
+		luminance = get_luminance()
+		set_motion_led(motion)
+		handle_lcd_data_display(temperature, humidity, motion, luminance)
+	
+		raw_json_object = {
+			"Temperatur": temp,
+			"Luftfeuchtigkeit": humid,
+			"Bewegung": motion,
+			"Helligkeit": luminance
+		}
+	
+		json_object = json.dumps(raw_json_object)
+	
+		print(json_object)
+		sleep(1)
+	\end{lstlisting}
+	
+	Innerhalb der While-True Schleife können wir nun die Funktion \\ \texttt{handle\_temperature\_led\_lights(temp)} aufrufen \& die Temperatur übergeben.
 	
 	
 	\part{Resultat}
+	Die Komponenten auf dem Steckbrett sind alle verkabelt \& komplett funktionsfähig.\\
+	
 	Der \textit{ESP32} fungiert nun als zentrale Einheit zum Messen von Temperatur, Luftfeuchtigkeit \& Helligkeit. Ebenfalls nimmt er Bewegungen war \& gibt diese anhand einer LED-Lampe (\textit{In unserem Aufbau, eine weiße LED}) wider. Die Temperatur \& Luftfeuchtigkeit wird auf einem kleinen LCD-Bildschirm mithilfe von einer I2C Verbindung an diesen geschickt.
+	
+	Das Log gibt den erforderlichen JSON-String aus.
+	\begin{lstlisting}
+	{
+		"Temperatur": 20.0,
+		"Luftfeuchtigkeit": 34.3,
+		"Bewegung": false,
+		"Helligkeit": 123.93
+	}
+	\end{lstlisting}
+	
 	
 \end{document}

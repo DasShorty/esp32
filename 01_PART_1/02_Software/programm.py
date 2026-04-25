@@ -31,7 +31,7 @@ def set_temperature_lights(red_on, orange_on, green_on):
     led_green.value(green_on)
 
 def handle_temperatue_led_lights(temp):
-    if temp >= 30:
+    if temp >= 25:
         set_temperature_lights(1,0,0)
     elif temp >= 25 and temp >= 20:
         set_temperature_lights(0,1,0)
