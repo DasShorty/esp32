@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (MiKTeX 25.12) (format=lualatex 2026.3.1)  25 APR 2026 10:38
+This is LuaHBTeX, Version 1.24.0 (MiKTeX 25.12) (format=lualatex 2026.3.1)  25 APR 2026 10:45
  restricted system commands enabled.
 **doc_esp32.tex
 (./doc_esp32.tex
@@ -782,7 +782,7 @@ lar.otf><c:/users/anthony/appdata/local/programs/miktex/fonts/opentype/public/lm
 pe/public/lm/lmroman12-bold.otf><c:/users/anthony/appdata/local/programs/miktex/
 fonts/opentype/public/lm/lmroman12-regular.otf><c:/users/anthony/appdata/local/p
 rograms/miktex/fonts/opentype/public/lm/lmroman17-regular.otf>
-Output written on doc_esp32.pdf (30 pages, 4408587 bytes).
+Output written on doc_esp32.pdf (30 pages, 4408297 bytes).
 
 PDF statistics: 685 PDF objects out of 1000 (max. 8388607)
  290 named destinations out of 1000 (max. 1048576)
