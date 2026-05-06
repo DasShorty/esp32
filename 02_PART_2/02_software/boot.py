@@ -37,6 +37,11 @@ password = "FI"
 keepalive = 1
 mqtt_client = MQTTClient(client_id, server, port, user, password, keepalive=0, ssl=False, ssl_params={})
 
+
+def mqtt_connect():
+    mqtt_client.connect()
+
+
 def do_connect():
     wlan.active(True)
     if not wlan.isconnected():
@@ -45,13 +50,13 @@ def do_connect():
         while not wlan.isconnected():
             print("WLAN is not connected")
             pass
-    
+
     print('network config:', wlan.ifconfig())
+
 
 def send_mqtt_message(message):
     channel = "Met/FI/Timmel2007"
     mqtt_client.publish(channel, message)
-
 
 
 def set_temperature_lights(red_on, orange_on, green_on):
@@ -59,19 +64,22 @@ def set_temperature_lights(red_on, orange_on, green_on):
     led_orange.value(orange_on)
     led_green.value(green_on)
 
+
 def handle_temperatue_led_lights(temp):
     if temp >= 25:
-        set_temperature_lights(1,0,0)
+        set_temperature_lights(1, 0, 0)
     elif temp >= 25 and temp >= 20:
-        set_temperature_lights(0,1,0)
+        set_temperature_lights(0, 1, 0)
     else:
-        set_temperature_lights(0,0,1)
+        set_temperature_lights(0, 0, 1)
+
 
 def get_device_temperature_and_humidity():
     dht_device.measure()
     temp = dht_device.temperature()
     humid = dht_device.humidity()
     return temp, humid
+
 
 def get_luminance():
     gamma = 0.7
@@ -81,10 +89,12 @@ def get_luminance():
     resistance = 2000 * voltage / (1 - voltage / ref_voltage)
     return pow((rl10 * 1e3) * pow(10, gamma) / resistance, (1 / gamma))
 
+
 def get_motion():
     return bool(motion_detector.value())
 
-def display_text(lineOne,lineTwo,lineThree,lineFour,lineSix):
+
+def display_text(lineOne, lineTwo, lineThree, lineFour, lineSix):
     display.fill(0)
     display.text(lineOne, 0, 0)
     display.text(lineTwo, 0, 10)
@@ -92,34 +102,36 @@ def display_text(lineOne,lineTwo,lineThree,lineFour,lineSix):
     display.text(lineFour, 0, 30)
     display.text(lineSix, 0, 50)
     display.show()
-    
+
+
 def set_motion_led(motion):
     motion_led.value(motion == True)
-    
+
+
 def handle_lcd_data_display(temperature, humidity, motion, luminance, wlan):
     display_text(f"Temperatur: {temp}", f"Humidity: {humid}", f"Motion: {motion}", f"Lux: {luminance}", f"WLAN: {wlan}")
-    
-    
+
+
 do_connect()
+mqtt_connect()
 
 while True:
-
     temp, humid = get_device_temperature_and_humidity()
     handle_temperatue_led_lights(temp)
-    motion = get_motion()    
+    motion = get_motion()
     luminance = get_luminance()
     set_motion_led(motion)
     handle_lcd_data_display(temp, humid, motion, luminance, wlan.isconnected())
-    
+
     raw_json_object = {
         "Temperatur": temp,
         "Luftfeuchtigkeit": humid,
         "Bewegung": motion,
         "Helligkeit": luminance
     }
-    
+
     json_object = json.dumps(raw_json_object)
-    
+
     print(json_object)
 
     send_mqtt_message(json_object)
