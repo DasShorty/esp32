@@ -1,0 +1,111 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
+<div class="activity-card">
+    <div class="chart-header">
+        <span class="chart-title">Bewegungs-Aktivität</span>
+        <span class="activity-status" ng-class="{'active': msg.payload[msg.payload.length-1].value > 0}">
+            {{msg.payload[msg.payload.length-1].value > 0 ? 'AKTIV' : 'RUHE'}}
+        </span>
+    </div>
+    <div class="chart-container">
+        <canvas id="motionHistoryChart"></canvas>
+    </div>
+</div>
+
+<style>
+    .activity-card {
+        background: #1a2634;
+        border-radius: 16px;
+        padding: 16px;
+        color: white;
+        font-family: 'Segoe UI', sans-serif;
+        height: calc(100% - 32px);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .chart-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .chart-title {
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: #a0aec0;
+    }
+
+    .activity-status {
+        font-size: 0.7rem;
+        padding: 2px 8px;
+        border-radius: 10px;
+        background: #4a5568;
+    }
+
+    .activity-status.active {
+        background: #f56565;
+        animation: pulse-red 2s infinite;
+    }
+
+    @keyframes pulse-red {
+        0% { opacity: 1; }
+        50% { opacity: 0.5; }
+        100% { opacity: 1; }
+    }
+
+    .chart-container { flex-grow: 1; position: relative; }
+</style>
+
+<script>
+    (function(scope) {
+        let chart;
+
+        function initChart(data) {
+            const ctx = document.getElementById('motionHistoryChart').getContext('2d');
+
+            chart = new Chart(ctx, {
+                type: 'bar', // Bar-Chart ist besser für Events
+                data: {
+                    labels: data.map(d => d.time),
+                    datasets: [{
+                        label: 'Erkennungen',
+                        data: data.map(d => d.value),
+                        backgroundColor: '#63b3ed',
+                        borderRadius: 4,
+                        hoverBackgroundColor: '#4299e1'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#718096', font: { size: 9 }, maxTicksLimit: 12 }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: { precision: 0, color: '#718096' }
+                        }
+                    }
+                }
+            });
+        }
+
+        scope.$watch('msg', function(msg) {
+            if (!msg || !Array.isArray(msg.payload)) return;
+
+            if (!chart) {
+                initChart(msg.payload);
+            } else {
+                chart.data.labels = msg.payload.map(d => d.time);
+                chart.data.datasets[0].data = msg.payload.map(d => d.value);
+                chart.update();
+            }
+        });
+    })(scope);
+</script>

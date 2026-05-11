@@ -46,7 +46,7 @@ def do_connect():
     wlan.active(True)
     if not wlan.isconnected():
         print('connecting to network...')
-        wlan.connect('Pixel_3781', '123456789')
+        wlan.connect('FI24-Hotspot', 'BszWsw11#')
         while not wlan.isconnected():
             print("WLAN is not connected")
             pass

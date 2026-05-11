@@ -1,8 +1,8 @@
-// noinspection JSAnnotator
+// noinspection JSAnnotator,JSUnresolvedReference
 
 // Initialisiere die Speichervariablen, falls sie noch nicht existieren
-let stats = context.get('temp-stats') || {sum: 0, count: 0, lastHour: new Date().getHours()};
-let history = context.get('temp-history') || [];
+let stats = context.get('humid-stats') || {sum: 0, count: 0, lastHour: new Date().getHours()};
+let history = context.get('humid-history') || [];
 
 // Aktuellen Wert zur Summe addieren
 stats.sum += msg.payload;
@@ -32,14 +32,14 @@ if (currentHour !== stats.lastHour) {
     stats.lastHour = currentHour;
 
     // Daten speichern
-    context.set('temp-stats', stats);
-    context.set('temp-history', history);
+    context.set('humid-stats', stats);
+    context.set('humid-history', history);
 
     // Nachricht mit dem kompletten Array an das Chart-Template senden
     msg.payload = history;
     return msg;
 } else {
     // Innerhalb der Stunde: Nur speichern, nichts senden (oder optional "null" zurückgeben)
-    context.set('temp-stats', stats);
+    context.set('humid-stats', stats);
     return null;
 }

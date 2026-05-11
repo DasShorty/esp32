@@ -1,0 +1,143 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
+<div class="history-card">
+    <div class="chart-header">
+        <span class="chart-title">Verlauf (24h)</span>
+        <span class="chart-avg">Schnitt: {{avgHumid}}%</span>
+    </div>
+    <div class="chart-container">
+        <canvas id="humidHistoryChart"></canvas>
+    </div>
+</div>
+
+<style>
+    .history-card {
+        /*background: #1a2634; */
+        /* Dunkles Design passend zur Sidebar */
+        background: #e3e3e3;
+        border-radius: 16px;
+        padding: 16px 16px 8px 16px; /* Unten etwas weniger Padding, da das Chart-Layout das übernimmt */
+        color: white;
+        font-family: 'Segoe UI', sans-serif;
+        height: calc(100% - 32px);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .chart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .chart-title {
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #a0aec0;
+    }
+
+    .chart-avg {
+        font-size: 0.85rem;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 2px 8px;
+        border-radius: 4px;
+        color: #a0aec0;
+    }
+
+    .chart-container {
+        flex-grow: 1;
+        position: relative;
+    }
+</style>
+
+<script>
+    (function (scope) {
+        let chart;
+
+        function initChart(data) {
+            const ctx = document.getElementById('humidHistoryChart').getContext('2d');
+
+            // Gradient für die Fläche unter der Linie
+            const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+            gradient.addColorStop(0, 'rgba(27, 213, 237, 0.4)');
+            gradient.addColorStop(1, 'rgba(27, 213, 237, 0)');
+
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.map(d => d.time), // Erwartet Zeitstempel
+                    datasets: [{
+                        label: 'Luftfeuchtigkeit',
+                        data: data.map(d => d.value),
+                        borderColor: '#1bd5ed',
+                        borderWidth: 3,
+                        pointRadius: 0,
+                        pointHoverRadius: 5,
+                        fill: true,
+                        backgroundColor: gradient,
+                        tension: 0.4 // Macht die Kurve sanft
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {display: false}
+                    },
+                    layout: {
+                        padding: {
+                            bottom: 10 // Gibt dem Chart unten etwas Luft für die Labels
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: true, // Jetzt auf true gestellt
+                            grid: {
+                                display: false, // Keine vertikalen Linien für einen cleanen Look
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#718096',
+                                font: {size: 10},
+                                maxRotation: 0, // Verhindert, dass die Uhrzeit schräg steht
+                                autoSkip: true, // Verhindert Überlappung bei vielen Datenpunkten
+                                maxTicksLimit: 8 // Zeigt z.B. nur jede 3. Stunde an, damit es nicht quetscht
+                            }
+                        },
+                        y: {
+                            grid: {
+                                color: 'rgba(255,255,255,0.05)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#718096',
+                                font: {size: 10}
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        scope.$watch('msg', function (msg) {
+            if (!msg || !msg.payload) return;
+
+            // Wir erwarten msg.payload als Array: [{time: "12:00", value: 21}, ...]
+            if (Array.isArray(msg.payload)) {
+                const values = msg.payload.map(d => d.value);
+                scope.avgHumid = (values.reduce((a, b) => a + b, 0) / values.length).toFixed(1);
+
+                if (!chart) {
+                    initChart(msg.payload);
+                } else {
+                    chart.data.labels = msg.payload.map(d => d.time);
+                    chart.data.datasets[0].data = values;
+                    chart.update('none'); // Update ohne Animation für Performance
+                }
+            }
+        });
+    })(scope);
+</script>
