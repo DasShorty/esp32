@@ -1,0 +1,123 @@
+<div class="log-card">
+    <div class="log-header">
+        <span class="log-title">Ereignisprotokoll</span>
+        <span class="log-count">{{msg.payload.length}} Events</span>
+    </div>
+    <div class="log-container">
+        <div class="log-entry" ng-repeat="event in msg.payload | orderBy:'-$index'">
+            <div class="event-icon">
+                <i class="fa fa-walking"></i>
+            </div>
+            <div class="event-details">
+                <span class="event-name">Bewegung erkannt</span>
+                <span class="event-time">{{event.time}}</span>
+            </div>
+            <div class="event-indicator"></div>
+        </div>
+        <div class="log-empty" ng-if="!msg.payload || msg.payload.length === 0">
+            Keine Bewegungen registriert
+        </div>
+    </div>
+</div>
+
+<style>
+    .log-card {
+        background: #1a2634;
+        border-radius: 16px;
+        padding: 16px;
+        color: white;
+        font-family: 'Segoe UI', sans-serif;
+        height: calc(100% - 32px);
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .log-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .log-title {
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: #a0aec0;
+    }
+
+    .log-count {
+        font-size: 0.75rem;
+        background: #2d3748;
+        padding: 2px 8px;
+        border-radius: 10px;
+        color: #63b3ed;
+    }
+
+    .log-container {
+        flex-grow: 1;
+        overflow-y: auto; /* Erlaubt Scrollen innerhalb des Logs */
+        padding-right: 5px;
+    }
+
+    /* Scrollbar Styling für Chrome/Edge */
+    .log-container::-webkit-scrollbar { width: 4px; }
+    .log-container::-webkit-scrollbar-thumb { background: #4a5568; border-radius: 10px; }
+
+    .log-entry {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        margin-bottom: 8px;
+        background: rgba(255,255,255,0.03);
+        border-radius: 10px;
+        transition: transform 0.2s;
+        border-left: 3px solid #63b3ed;
+    }
+
+    .event-icon {
+        width: 32px;
+        height: 32px;
+        background: rgba(99, 179, 237, 0.1);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 12px;
+        color: #63b3ed;
+    }
+
+    .event-details {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .event-name {
+        font-size: 0.85rem;
+        font-weight: 500;
+    }
+
+    .event-time {
+        font-size: 0.75rem;
+        color: #718096;
+    }
+
+    .event-indicator {
+        width: 8px;
+        height: 8px;
+        background: #63b3ed;
+        border-radius: 50%;
+        opacity: 0.6;
+    }
+
+    .log-empty {
+        text-align: center;
+        padding: 20px;
+        color: #718096;
+        font-style: italic;
+    }
+</style>
