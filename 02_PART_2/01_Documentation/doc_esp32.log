@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.2)  12 MAY 2026 09:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.2)  12 MAY 2026 12:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -438,7 +438,7 @@ l.68 	\cleardoublepage
 
 ] [3]
 Kapitel 1.
-<assets/Berufsschule - Pub_Sub Messaging.jpg, id=49, 3592.42125pt x 1614.03pt>
+<assets/Berufsschule - Pub_Sub Messaging.jpg, id=59, 3592.42125pt x 1614.03pt>
 File: assets/Berufsschule - Pub_Sub Messaging.jpg Graphic file (type jpg)
 <use assets/Berufsschule - Pub_Sub Messaging.jpg>
 Package pdftex.def Info: assets/Berufsschule - Pub_Sub Messaging.jpg  used on i
@@ -447,12 +447,18 @@ nput line 84.
 [4
 
  <./assets/Berufsschule - Pub_Sub Messaging.jpg>]
-<assets/Berufsschule-MQTT.jpg, id=56, 2781.39125pt x 2085.7925pt>
+<assets/Berufsschule-MQTT.jpg, id=66, 2781.39125pt x 2085.7925pt>
 File: assets/Berufsschule-MQTT.jpg Graphic file (type jpg)
 <use assets/Berufsschule-MQTT.jpg>
 Package pdftex.def Info: assets/Berufsschule-MQTT.jpg  used on input line 94.
 (pdftex.def)             Requested size: 328.82706pt x 246.5606pt.
- [5 <./assets/Berufsschule-MQTT.jpg>] (./doc_esp32.aux
+ [5 <./assets/Berufsschule-MQTT.jpg>] [6
+
+]
+Kapitel 2.
+[7
+
+] (./doc_esp32.aux
 Package cleveref Info: loaded `ngerman' language definitions on input line 8.
 )
  ***********
@@ -460,29 +466,32 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `doc_esp32.out' has not changed.
-(rerunfilecheck)             Checksum: 752D39FE736B31A4B8637055092CEAB0;457.
+(rerunfilecheck)             Checksum: 9204BAF29D10873AD145EDFC0B0AD7B0;843.
  ) 
 Here is how much of TeX's memory you used:
- 13965 strings out of 469462
- 228455 string characters out of 5468615
- 825084 words of memory out of 5000000
- 42490 multiletter control sequences out of 15000+600000
- 639629 words of font info for 61 fonts, out of 8000000 for 9000
+ 14391 strings out of 469462
+ 232204 string characters out of 5468615
+ 895084 words of memory out of 5000000
+ 42890 multiletter control sequences out of 15000+600000
+ 641786 words of font info for 65 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,7n,79p,611b,513s stack positions out of 10000i,1000n,20000p,200000b,200000s
- </home/anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk
-> </home/anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk>
- </home/anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2074.600pk> 
-</home/anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> <
-/home/anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </
-home/anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </h
-ome/anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </ho
-me/anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </hom
-e/anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk>
-Output written on doc_esp32.pdf (6 pages, 755737 bytes).
+ 75i,7n,79p,611b,1257s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ </home/anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk
+> </home/anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0900.600pk>
+ </home/anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0500.600pk> 
+</home/anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> <
+/home/anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk> </
+home/anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2074.600pk> </h
+ome/anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </ho
+me/anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </hom
+e/anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home
+/anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </home/
+anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/a
+nthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk>
+Output written on doc_esp32.pdf (8 pages, 794091 bytes).
 PDF statistics:
- 302 PDF objects out of 1000 (max. 8388607)
- 86 compressed objects within 1 object stream
- 13 named destinations out of 1000 (max. 500000)
- 43 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 472 PDF objects out of 1000 (max. 8388607)
+ 138 compressed objects within 2 object streams
+ 35 named destinations out of 1000 (max. 500000)
+ 59 words of extra memory for PDF output out of 10000 (max. 10000000)
 

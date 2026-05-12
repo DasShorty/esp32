@@ -31,10 +31,9 @@ wlan = network.WLAN(network.STA_IF)
 
 client_id = "ESP_32_MQTT"
 server = "mosquitto.nodered-fi.ipv64.net"
-port = 0
+port = 1883
 user = "FI"
 password = "FI"
-keepalive = 1
 mqtt_client = MQTTClient(client_id, server, port, user, password, keepalive=0, ssl=False, ssl_params={})
 
 
@@ -65,7 +64,7 @@ def set_temperature_lights(red_on, orange_on, green_on):
     led_green.value(green_on)
 
 
-def handle_temperatue_led_lights(temp):
+def handle_temperature_led_lights(temp):
     if temp >= 25:
         set_temperature_lights(1, 0, 0)
     elif temp >= 25 and temp >= 20:
@@ -117,7 +116,7 @@ mqtt_connect()
 
 while True:
     temp, humid = get_device_temperature_and_humidity()
-    handle_temperatue_led_lights(temp)
+    handle_temperature_led_lights(temp)
     motion = get_motion()
     luminance = get_luminance()
     set_motion_led(motion)

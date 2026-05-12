@@ -95,9 +95,68 @@
 		\caption[Grafik von Anthony Timmel]{Grafik von MQTT}
 		\label{fig:berufsschule-mqtt}
 	\end{figure}
+	Diese Grafik verbildlicht die Kommunikation zwischen den einzelnen Geräten wie den Kühlschrank, Thermometer, Server \& einem Handy. Hierbei werden die Daten mithilfe von dem MQTT-Client an den Broker gesendet. Der Broker sendet diese Daten dann an alle Clienten, die den \textbf{Channel} subscribed haben.
+	
 	Innerhalb dieses zweiten Teils werden Daten an einen externen Dienst versendet. Dafür gibt es verschiedene Wege, diesen Prozess zu absolvieren. 
 	
 	Das MQTT-Protokoll ist ein klassiches Pub/Sub Modell in der IoT Welt.
 	Hierbei agiert es als leichtgewichtiges Messaging Protokoll für die Übermittlung von Daten, von unseren Client an den Server.
+	
+	\part{MQTT-Client im ESP32}
+	
+	\chapter{Internetverbindung für den ESP32}
+	Damit Daten überhaupt von dem ESP32 an den MQTT-Broker übermittelt werden können, benötigt der ESP32 eine Internetverbindung.
+	
+	Für die technische Umsetzung wurde sich auf die \hyperref{https://docs.micropython.org/en/v1.21.0/esp32/quickref.html#wlan}{ESP32\_Dokumentation}{esp32-wlan}{ESP32 WLAN Modul} Dokumentation bezogen.
+	
+	
+	\begin{lstlisting}
+	import network
+	
+	wlan = network.WLAN(network.STA_IF)
+	
+	def do_connect():
+		wlan.active(True)
+		if not wlan.isconnected():
+			print('connecting to network...')
+			wlan.connect('FI24-Hotspot', 'BszWsw11#')
+			while not wlan.isconnected():
+				print("WLAN is not connected")
+				pass
+	
+		print('network config:', wlan.ifconfig())
+	
+	do_connect()
+	\end{lstlisting}
+	
+	Zuerst importieren wir das Modul \textbf{network}.
+	In Zeile 3 deklarieren wir das WLAN-Modul des ESP32, indem wir aus dem Netzwerk-Modul die Klasse \textbf{WLAN} instanziieren. \texttt{network.STA\_IF} bedeutet hierbei, das wir es als Station Interface deklarieren, also ein stationärer Zugriffspunkt (Access Point).
+	
+	Damit wir später im Programmcode einfacher eine W-LAN Verbindung herstellen können, deklarieren wir die Funktion \texttt{do\_connect()}. Innerhalb des Funktionsbodies, aktivieren wir zuerst die WLAN-Funktionalität, damit wir uns später mit einem Access Point verbinden können. Wir überprüfen zuerst, ob wir mit einem Access-Point verbunden sind. Dies verhindert, dass wir die Verbindung zu dem Access-Point neu aufbauen, obwohl wir bereits eine Verbindung haben.
+	
+	In Zeile 9 verbinden wir uns mit dem definierten Access Point \& überprüfen in der while-Schleife dann so lange, ob die Verbindung erfolgreich war. Erst nach einer erfolgreichen Verbindung lassen wir die while-Schleife los \& geben die IP-Informationen in die Konsole aus.
+	
+	Damit die WLAN Verbindung initzialisiert werden kann, wird die Funktion \texttt{do\_connect()} aufgerufen.
+	
+	\chapter{MQTT-Client}
+	
+	\begin{lstlisting}
+	from umqtt.simple import MQTTClient
+	
+	client_id = "ESP_32_MQTT"
+	server = "mosquitto.nodered-fi.ipv64.net"
+	port = 0
+	user = "FI"
+	password = "FI"
+	keepalive = 1
+	mqtt_client = MQTTClient(client_id, server, port, user, password, keepalive=0, ssl=False, ssl_params={})
+	
+	def mqtt_connect():
+		mqtt_client.connect()
+		
+	def send_mqtt_message(message):
+		channel = "Met/FI/Timmel"
+		mqtt_client.publish(channel, message)
+	\end{lstlisting} 
 	
 \end{document}
