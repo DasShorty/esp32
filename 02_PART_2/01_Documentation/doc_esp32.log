@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.2)  13 MAY 2026 14:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.2)  18 MAY 2026 14:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -526,31 +526,87 @@ File: assets/convert-node-to-jsobj-view.png Graphic file (type png)
 Package pdftex.def Info: assets/convert-node-to-jsobj-view.png  used on input l
 ine 257.
 (pdftex.def)             Requested size: 139.69687pt x 189.71066pt.
-<assets/fun-to-temperature.png, id=331, 281.05pt x 83.31125pt>
+ [14 <./assets/convert-node-to-jsobj.png> <./assets/convert-node-to-jsobj-view.
+png>]
+<assets/fun-to-temperature.png, id=338, 281.05pt x 83.31125pt>
 File: assets/fun-to-temperature.png Graphic file (type png)
 <use assets/fun-to-temperature.png>
-Package pdftex.def Info: assets/fun-to-temperature.png  used on input line 267.
+Package pdftex.def Info: assets/fun-to-temperature.png  used on input line 268.
 
 (pdftex.def)             Requested size: 140.92792pt x 41.77501pt.
- [14 <./assets/convert-node-to-jsobj.png> <./assets/convert-node-to-jsobj-view.
-png> <./assets/fun-to-temperature.png>] [15] (./doc_esp32.aux
+
+(/usr/share/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2025/11/14 1.11b listings language file
+)
+(/usr/share/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2025/11/14 1.11b (Carsten Heinz)
+)
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 282.
+
+(../02_Software/../02_Software/templates/temperature/current.html [15 <./assets
+/fun-to-temperature.png>] [16])
+(../02_Software/../02_Software/templates/temperature/history-converter.js
+[17]) (../02_Software/../02_Software/templates/temperature/history.html
+[18] [19]) [20]
+<assets/fun-to-humidity.png, id=671, 281.05pt x 83.31125pt>
+File: assets/fun-to-humidity.png Graphic file (type png)
+<use assets/fun-to-humidity.png>
+Package pdftex.def Info: assets/fun-to-humidity.png  used on input line 292.
+(pdftex.def)             Requested size: 140.92792pt x 41.77501pt.
+ (../02_Software/../02_Software/templates/humidity/current.html
+[21 <./assets/fun-to-humidity.png>] [22])
+(../02_Software/../02_Software/templates/humidity/history-converter.js [23])
+(../02_Software/../02_Software/templates/humidity/history.html [24] [25])
+[26]
+<assets/fun-to-motion.png, id=1007, 281.05pt x 83.31125pt>
+File: assets/fun-to-motion.png Graphic file (type png)
+<use assets/fun-to-motion.png>
+Package pdftex.def Info: assets/fun-to-motion.png  used on input line 317.
+(pdftex.def)             Requested size: 140.92792pt x 41.77501pt.
+ (../02_Software/../02_Software/templates/motion/current.html [27 <./assets/fun
+-to-motion.png>])
+(../02_Software/../02_Software/templates/motion/history-converter.js [28])
+(../02_Software/../02_Software/templates/motion/history.html [29] [30])
+[31]
+<assets/fun-to-luminance.png, id=1261, 281.05pt x 83.31125pt>
+File: assets/fun-to-luminance.png Graphic file (type png)
+<use assets/fun-to-luminance.png>
+Package pdftex.def Info: assets/fun-to-luminance.png  used on input line 341.
+(pdftex.def)             Requested size: 140.92792pt x 41.77501pt.
+ (../02_Software/../02_Software/templates/luminance/current.html [32 <./assets/
+fun-to-luminance.png>] [33]) [34]
+(../02_Software/../02_Software/templates/luminance/history-converter.js)
+(../02_Software/../02_Software/templates/luminance/history.html [35] [36])
+[37]
+Kapitel 5.
+(../02_Software/../02_Software/boot.py [38
+
+] [39]) [40] (./doc_esp32.aux
 Package cleveref Info: loaded `ngerman' language definitions on input line 8.
 )
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
-Package rerunfilecheck Info: File `doc_esp32.out' has not changed.
-(rerunfilecheck)             Checksum: C8C3ADD3C3E6D8CBC7EFE288D5372013;7032.
+
+
+Package rerunfilecheck Warning: File `doc_esp32.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `doc_esp32.out':
+(rerunfilecheck)             Before: C8C3ADD3C3E6D8CBC7EFE288D5372013;7032
+(rerunfilecheck)             After:  35E071E1C3675CD4C73B5F6FE5143F9B;7233.
  ) 
 Here is how much of TeX's memory you used:
- 14724 strings out of 469462
- 239089 string characters out of 5468615
- 909498 words of memory out of 5000000
- 43131 multiletter control sequences out of 15000+600000
+ 16440 strings out of 469462
+ 268735 string characters out of 5468615
+ 1465642 words of memory out of 5000000
+ 43516 multiletter control sequences out of 15000+600000
  642083 words of font info for 66 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,7n,79p,611b,1990s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,7n,79p,611b,2293s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </home/anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/tctt0900.600pk
 > </home/anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0900.600pk>
  </home/anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0500.600pk> 
@@ -564,10 +620,10 @@ e/anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home
 anthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </home/a
 nthony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/an
 thony/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk>
-Output written on doc_esp32.pdf (16 pages, 1005322 bytes).
+Output written on doc_esp32.pdf (41 pages, 1132808 bytes).
 PDF statistics:
- 877 PDF objects out of 1000 (max. 8388607)
- 398 compressed objects within 4 object streams
- 121 named destinations out of 1000 (max. 500000)
- 363 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2560 PDF objects out of 2984 (max. 8388607)
+ 2004 compressed objects within 21 object streams
+ 1411 named destinations out of 1440 (max. 500000)
+ 378 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -22,19 +22,20 @@
 \contentsline {section}{\numberline {3.2}Programmcode}{11}{section.3.2}%
 \contentsline {chapter}{\numberline {4}Verarbeitung der Daten in NODE-RED}{12}{chapter.4}%
 \contentsline {section}{\numberline {4.1}MQTT-Client innerhalb von NODE-RED}{12}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Temperatur}{14}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Vorbereitung der Daten für das UI}{14}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}UI Template für aktuelle Daten}{14}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}UI Template für historie Daten}{15}{subsection.4.2.3}%
-\contentsline {section}{\numberline {4.3}Luftfeuchtigkeit}{15}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Vorbereitung der Daten für das UI}{15}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}UI Template für aktuelle Daten}{15}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}UI Template für historie Daten}{15}{subsection.4.3.3}%
-\contentsline {section}{\numberline {4.4}Bewegung}{15}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Vorbereitung der Daten für das UI}{15}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}UI Template für aktuelle Daten}{15}{subsection.4.4.2}%
-\contentsline {subsection}{\numberline {4.4.3}UI Template für historie Daten}{15}{subsection.4.4.3}%
-\contentsline {section}{\numberline {4.5}Helligkeit}{15}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Vorbereitung der Daten für das UI}{15}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}UI Template für aktuelle Daten}{15}{subsection.4.5.2}%
-\contentsline {subsection}{\numberline {4.5.3}UI Template für historie Daten}{15}{subsection.4.5.3}%
+\contentsline {section}{\numberline {4.2}Temperatur}{15}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Vorbereitung der Daten für das UI}{15}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}UI Template für aktuelle Daten}{15}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}UI Template für historie Daten}{17}{subsection.4.2.3}%
+\contentsline {section}{\numberline {4.3}Luftfeuchtigkeit}{21}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Vorbereitung der Daten für das UI}{21}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}UI Template für aktuelle Daten}{21}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}UI Template für historie Daten}{23}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}Bewegung}{27}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Vorbereitung der Daten für das UI}{27}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}UI Template für aktuelle Daten}{27}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}UI Template für historie Daten}{28}{subsection.4.4.3}%
+\contentsline {section}{\numberline {4.5}Helligkeit}{32}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Vorbereitung der Daten für das UI}{32}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}UI Template für aktuelle Daten}{32}{subsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.5.3}UI Template für historie Daten}{35}{subsection.4.5.3}%
+\contentsline {chapter}{\numberline {5}Ganzer Programmcode für ESP32}{38}{chapter.5}%

@@ -260,6 +260,7 @@
 	\end{figure}
 	Mit der \textbf{Convert to JSON-Object} Node, konvertieren wir den JSON-String in ein valides JSON-Objekt.
 	
+	\newpage
 	\section{Temperatur}
 	\subsection{Vorbereitung der Daten für das UI}
 	\begin{figure}[h!]
@@ -277,38 +278,87 @@
 	\end{lstlisting}
 	Mithilfe dieses JavaScript Codes setzen wir die \texttt{msg.payload} Variable auf den Temperatur Wert, den wir zuvor erhalten haben.
 	
-	
 	\subsection{UI Template für aktuelle Daten}
-	
-	\begin{lstlisting}
-	<div class="temp-widget" ng-class="getTempClass(msg.payload)">
-		<div class="glass-overlay"></div>
-			<div class="content">
-				<span class="label">Temperatur</span>
-				<div class="temp-value">
-				<span class="number">{{msg.payload | number:1}}</span>
-				<span class="unit">°C</span>
-			</div>
-			<div class="status-indicator">
-				<div class="pulse-dot"></div>
-				<span class="status-text">{{getStatusText(msg.payload)}}</span>
-			</div>
-		</div>
-	</div>
-	\end{lstlisting}
+	\lstinputlisting[language=HTML]{../02_Software/templates/temperature/current.html}
 	
 	\subsection{UI Template für historie Daten}
+	\lstinputlisting[language=HTML]{../02_Software/templates/temperature/history-converter.js}
+	\lstinputlisting[language=HTML]{../02_Software/templates/temperature/history.html}
+	\newpage
 	\section{Luftfeuchtigkeit}
 	\subsection{Vorbereitung der Daten für das UI}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.3\linewidth]{assets/fun-to-humidity}
+		\caption{}
+		\label{fig:fun-to-humid}
+	\end{figure}
+	Bevor wir die Daten für die Luftfeuchtigkeit in die Visualisierung leiten können, müssen wir zuvor die richtigen Daten zuweisen.
+	
+	\begin{lstlisting}
+		msg.payload = msg.payload.Luftfeuchtigkeit;
+		
+		return msg;
+	\end{lstlisting}
+	Mithilfe dieses JavaScript Codes setzen wir die \texttt{msg.payload} Variable auf den Luftfeuchtigkeit's Wert, den wir zuvor erhalten haben.
+	
 	\subsection{UI Template für aktuelle Daten}
+	\lstinputlisting[language=HTML]{../02_Software/templates/humidity/current.html}
+	
 	\subsection{UI Template für historie Daten}
+	\lstinputlisting[language=HTML]{../02_Software/templates/humidity/history-converter.js}
+	\lstinputlisting[language=HTML]{../02_Software/templates/humidity/history.html}
+	
+	\newpage
 	\section{Bewegung}
 	\subsection{Vorbereitung der Daten für das UI}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.3\linewidth]{assets/fun-to-motion}
+		\caption{}
+		\label{fig:fun-to-motion}
+	\end{figure}
+	Bevor wir die Daten für die Bewegung in die Visualisierung leiten können, müssen wir zuvor die richtigen Daten zuweisen.
+	
+	\begin{lstlisting}
+		msg.payload = msg.payload.Luftfeuchtigkeit;
+		
+		return msg;
+	\end{lstlisting}
+	Mithilfe dieses JavaScript Codes setzen wir die \texttt{msg.payload} Variable auf den Bewegung Wert, den wir zuvor erhalten haben.
+	
 	\subsection{UI Template für aktuelle Daten}
+	\lstinputlisting[language=HTML]{../02_Software/templates/motion/current.html}
+	
 	\subsection{UI Template für historie Daten}
+	\lstinputlisting[language=HTML]{../02_Software/templates/motion/history-converter.js}
+	\lstinputlisting[language=HTML]{../02_Software/templates/motion/history.html}
+	\newpage
 	\section{Helligkeit}
 	\subsection{Vorbereitung der Daten für das UI}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.3\linewidth]{assets/fun-to-luminance}
+		\caption{}
+		\label{fig:fun-to-luminance}
+	\end{figure}
+	Bevor wir die Daten für die Helligkeit in die Visualisierung leiten können, müssen wir zuvor die richtigen Daten zuweisen.
+	
+	\begin{lstlisting}
+		msg.payload = msg.payload.Helligkeit;
+		
+		return msg;
+	\end{lstlisting}
+	Mithilfe dieses JavaScript Codes setzen wir die \texttt{msg.payload} Variable auf den Helligkeit Wert, den wir zuvor erhalten haben.
+	
 	\subsection{UI Template für aktuelle Daten}
+	\lstinputlisting[language=HTML]{../02_Software/templates/luminance/current.html}
+	
 	\subsection{UI Template für historie Daten}
+	\lstinputlisting[language=HTML]{../02_Software/templates/luminance/history-converter.js}
+	\lstinputlisting[language=HTML]{../02_Software/templates/luminance/history.html}
+	
+	\chapter{Ganzer Programmcode für ESP32}
+	\lstinputlisting[language=python]{../02_Software/boot.py}
 	
 \end{document}

@@ -23,13 +23,15 @@
         font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         min-height: 120px;
         transition: background 0.8s ease;
-        /*box-shadow: 0 4px 15px rgba(0,0,0,0.2);*/
     }
 
     .glass-overlay {
         position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
         z-index: 1;
     }
 
@@ -45,7 +47,6 @@
         opacity: 0.8;
     }
 
-    /* Große Temperaturanzeige */
     .temp-value {
         margin: 10px 0;
         display: flex;
@@ -64,7 +65,6 @@
         font-weight: 300;
     }
 
-    /* Status & Animation */
     .status-indicator {
         display: flex;
         align-items: center;
@@ -82,31 +82,48 @@
     }
 
     @keyframes pulse {
-        0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
-        70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
-        100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        0% {
+            transform: scale(0.95);
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+        }
+        70% {
+            transform: scale(1);
+            box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+        }
+        100% {
+            transform: scale(0.95);
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+        }
     }
 
-    /* Dynamische Gradients je nach Klasse */
-    .temp-cold { background: linear-gradient(135deg, #1bd5ed 0%, #15a2b8 100%); }
-    .temp-normal { background: linear-gradient(135deg, #88f411 0%, #72cc0e 100%); }
-    .temp-warm { background: linear-gradient(135deg, #d99f0e 0%, #b8860c 100%); }
-    .temp-hot { background: linear-gradient(135deg, #d90e0e 0%, #a30a0a 100%); }
+    .temp-cold {
+        background: linear-gradient(135deg, #1bd5ed 0%, #15a2b8 100%);
+    }
+
+    .temp-normal {
+        background: linear-gradient(135deg, #88f411 0%, #72cc0e 100%);
+    }
+
+    .temp-warm {
+        background: linear-gradient(135deg, #d99f0e 0%, #b8860c 100%);
+    }
+
+    .temp-hot {
+        background: linear-gradient(135deg, #d90e0e 0%, #a30a0a 100%);
+    }
 
 </style>
 
 <script>
-    (function(scope) {
-        // Logik für die CSS-Klasse basierend auf der Temperatur
-        scope.getTempClass = function(temp) {
+    (function (scope) {
+        scope.getTempClass = function (temp) {
             if (temp > 25) return 'temp-hot';
             if (temp > 20) return 'temp-warm';
             if (temp > 15) return 'temp-normal';
             return 'temp-cold';
         };
 
-        // Optional: Dynamischer Text-Status
-        scope.getStatusText = function(temp) {
+        scope.getStatusText = function (temp) {
             if (temp > 25) return 'Sehr warm';
             if (temp > 20) return 'Angenehm';
             if (temp > 15) return 'Kühl';

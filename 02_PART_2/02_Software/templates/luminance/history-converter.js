@@ -1,45 +1,21 @@
-// noinspection JSAnnotator,JSUnresolvedReference
+let history = global.get('luminance-history') || [];
 
-// Initialisiere die Speichervariablen, falls sie noch nicht existieren
-let stats = context.get('luminance-stats') || {sum: 0, count: 0, lastHour: new Date().getHours()};
-let history = context.get('luminance-history') || [];
+let timeLabel = new Date().toLocaleTimeString('de-DE', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+});
 
-// Aktuellen Wert zur Summe addieren
-stats.sum += msg.payload;
-stats.count++;
+history.push({
+    time: timeLabel,
+    value: msg.payload,
+    timestamp: new Date()
+});
 
-let currentHour = new Date().getHours();
+let twentyFourHoursAgo = Date.now() - (24 * 60 * 60 * 1000);
+history = history.filter(record => record.timestamp >= twentyFourHoursAgo);
 
-// Prüfen, ob eine neue Stunde angebrochen ist
-if (currentHour !== stats.lastHour) {
-    // Mittelwert berechnen
-    let average = stats.sum / stats.count;
+global.set('luminance-history', history);
 
-    // Zeitstempel für die X-Achse (z.B. "14:00")
-    let timeLabel = stats.lastHour.toString().padStart(2, '0') + ":00";
-
-    // Neuen Datenpunkt in die Historie pushen
-    history.push({time: timeLabel, value: parseFloat(average.toFixed(1))});
-
-    // Begrenzung auf die letzten 24 Stunden
-    if (history.length > 24) {
-        history.shift();
-    }
-
-    // Reset für die neue Stunde
-    stats.sum = 0;
-    stats.count = 0;
-    stats.lastHour = currentHour;
-
-    // Daten speichern
-    context.set('luminance-stats', stats);
-    context.set('luminance-history', history);
-
-    // Nachricht mit dem kompletten Array an das Chart-Template senden
-    msg.payload = history;
-    return msg;
-} else {
-    // Innerhalb der Stunde: Nur speichern, nichts senden (oder optional "null" zurückgeben)
-    context.set('luminance-stats', stats);
-    return null;
-}
+msg.payload = history;
+return msg;

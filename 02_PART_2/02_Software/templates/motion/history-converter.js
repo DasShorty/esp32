@@ -1,5 +1,3 @@
-// noinspection JSAnnotator
-
 const maxLogs = 10;
 
 let log = context.get('motion-eventLog') || [];

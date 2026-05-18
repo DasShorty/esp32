@@ -1,0 +1,234 @@
+﻿Diagnose log at 2026-05-18T06:33:27Z
+
+AppPath: /usr/bin/git-credential-manager
+InstallDir: /usr/lib/share/git-credential-manager/
+Version: 2.7.0+16168a11652d2446d2fb028757b06e2ec0ac19a3
+
+------------
+Diagnostic: Environment
+Skipped: False
+Success: True
+Exception: None
+Log:
+OSType: Linux
+OSVersion: Arch Linux
+Reading environment variables... OK
+ Variables:
+QT_QPA_PLATFORM=wayland;xcb
+XDG_BACKEND=wayland
+OLDPWD=/home/anthony
+MANROFFOPT=-c
+GDK_SCALE=1
+XDG_VTNR=1
+_=/usr/bin/git-credential-manager
+HYPRLAND_CMD=Hyprland --watchdog-fd 4
+TERMINAL=xdg-terminal-exec
+STARSHIP_SESSION_KEY=1789526548274954
+BROWSER=firefox
+XDG_MENU_PREFIX=hyprland-
+XDG_DATA_HOME=/home/anthony/.local/share
+XDG_RUNTIME_DIR=/run/user/1000
+QT_IM_MODULE=fcitx
+__MISE_SESSION=eAHqWpOTn5iSmhJfkp+fUzxhHZSXnJ+XlplePPGmmn5Gfm6qfmJeSUZ+XqW+HkRCPzezOFUfwtYryc/NWQNhxxcklmQUT1icmlfWuNLLMcwx3sPf1/WmCZohOfnJiTn6xRmJRakQkzLziksSc3KK9bMASyxL1Dcy0zPQM1iemJOZWJxa3LCqJLUoMT4tMye1eMLq8sSS5AwIZzKxjttPwPqb+tgVlCSWQN1XUlRaXJKaogvxZfHilMyivah6XPKTS3NT80qK9VOLC4yN1qTmlcWXJRbFZyQWZ2xIMrY0TE0zNUgyN0w2NLUwW5uTWJJaXBJfWpCSWJJ6RIABDhjnWa5nswEAi9uajg
+XDG_CACHE_HOME=/home/anthony/.cache
+PATH=/home/anthony/.config/composer/vendor/bin:/home/anthony/.config/composer/vendor/bin:/home/anthony/.config/composer/vendor/bin:/home/anthony/.local/share/mise/installs/java/26.0.0/bin:/home/anthony/.local/share/mise/installs/node/25.8.0/bin:/home/anthony/.local/share/mise/installs/python/3.14.3/bin:/home/anthony/.local/share/omarchy/bin:/home/anthony/.local/share/mise/shims:/home/anthony/.local/share/omarchy/bin:/home/anthony/.local/share/../bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/anthony/.local/share/JetBrains/Toolbox/scripts:/home/anthony/.local/share/JetBrains/Toolbox/scripts:/home/anthony/.local/bin
+MISE_SHELL=bash
+ELECTRON_OZONE_PLATFORM_HINT=wayland
+DEBUGINFOD_URLS=https://debuginfod.archlinux.org 
+INPUT_METHOD=fcitx
+__MISE_ORIG_PATH=/home/anthony/.local/share/omarchy/bin:/home/anthony/.local/share/mise/shims:/home/anthony/.local/share/omarchy/bin:/home/anthony/.local/share/../bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/anthony/.local/share/JetBrains/Toolbox/scripts:/home/anthony/.local/share/JetBrains/Toolbox/scripts:/home/anthony/.local/bin
+XDG_SESSION_TYPE=wayland
+XDG_CONFIG_DIRS=/etc/xdg
+HYPRLAND_INSTANCE_SIGNATURE=521ece463c4a9d3d128670688a34756805a4328f_1779083718_206119299
+NOTIFY_SOCKET=/run/user/1000/systemd/notify
+SDL_IM_MODULE=fcitx
+HL_INITIAL_WORKSPACE_TOKEN=fe67c2b6-c52d-4603-a2db-1574f2828fc5
+HYPRCURSOR_SIZE=24
+OZONE_PLATFORM=wayland
+MEMORY_PRESSURE_WATCH=/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/wayland-wm@hyprland.desktop.service/memory.pressure
+JOURNAL_STREAM=10:10156
+EDITOR=nvim
+XDG_DATA_DIRS=/usr/local/share:/usr/share
+XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+LANG=en_US.UTF-8
+XMODIFIERS=@im=fcitx
+DESKTOP_SESSION=omarchy
+SHELL=/usr/bin/bash
+BAT_THEME=ansi
+MAIL=/var/spool/mail/anthony
+ALACRITTY_LOG=/tmp/Alacritty-5099.log
+MANAGERPID=947
+COLORTERM=truecolor
+XDG_SESSION_DESKTOP=Hyprland
+MEMORY_PRESSURE_WRITE=c29tZSAyMDAwMDAgMjAwMDAwMAA=
+LOGNAME=anthony
+OMARCHY_PATH=/home/anthony/.local/share/omarchy
+TERM=xterm-256color
+WINDOWID=94615949314736
+SHLVL=1
+QT_STYLE_OVERRIDE=kvantum
+_JAVA_AWT_WM_NONREPARENTING=1
+WAYLAND_DISPLAY=wayland-1
+INVOCATION_ID=5846a866d71445a997c769d605eff665
+MANPAGER=sh -c 'col -bx | bat -l man -p'
+PWD=/home/anthony/Documents/esp32
+JAVA_HOME=/home/anthony/.local/share/mise/installs/java/26.0.0
+XDG_SEAT=seat0
+MOZ_ENABLE_WAYLAND=1
+SYSTEMD_EXEC_PID=1063
+ALACRITTY_WINDOW_ID=94615949314736
+GIT_TRACE2_PARENT_SID=a730ad72-2ed5-4700-9d40-aa74b48ea83a
+XDG_SESSION_ID=1
+SUDO_EDITOR=nvim
+__MISE_DIFF=eAFrXpyfk9KwOC+1vHGll2OYY7yHv6/rTRP9jPzcVP3EvJKM/LxKfb2c/OTEHP3ijMSiVP3czOJU/cy84pLEnJxi/azEskR9IzM9Az2DJQWJJRmTb1qQo1c/KTOPBJ15+Smp+kamehZ6BmCdVkTbWVAJ8pK+sZ6hiZ4xSC8AnGdeQw
+DISPLAY=:0
+XCURSOR_SIZE=24
+ALACRITTY_SOCKET=/run/user/1000/Alacritty-wayland-1-5099.sock
+GDK_BACKEND=wayland,x11,*
+UWSM_FINALIZE_VARNAMES=HYPRLAND_INSTANCE_SIGNATURE HYPRLAND_CMD HYPRCURSOR_THEME HYPRCURSOR_SIZE XCURSOR_SIZE XCURSOR_THEME
+UWSM_WAIT_VARNAMES=HYPRLAND_INSTANCE_SIGNATURE
+MANAGERPIDFDID=12510
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+XDG_SESSION_CLASS=user
+HOME=/home/anthony
+MOTD_SHOWN=pam
+STARSHIP_SHELL=bash
+USER=anthony
+XDG_CURRENT_DESKTOP=Hyprland
+XDG_CONFIG_HOME=/home/anthony/.config
+XCOMPOSEFILE=~/.XCompose
+XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0
+XDG_STATE_HOME=/home/anthony/.local/state
+
+
+------------
+Diagnostic: File system
+Skipped: False
+Success: True
+Exception: None
+Log:
+Temporary directory is '/tmp/'...
+Checking basic file I/O...
+Writing to temporary file '/tmp/c8cc49728b1870a5905b8bb4'... OK
+Reading from temporary file '/tmp/c8cc49728b1870a5905b8bb4'... OK
+Deleting temporary file '/tmp/c8cc49728b1870a5905b8bb4'... OK
+Testing IFileSystem instance...
+UserHomePath: /home/anthony
+UserDataDirectoryPath: /home/anthony/.gcm
+GetCurrentDirectory(): /home/anthony/Documents/esp32
+
+------------
+Diagnostic: Networking
+Skipped: False
+Success: True
+Exception: None
+Log:
+Checking networking and HTTP stack...
+Creating HTTP client... OK
+IsNetworkAvailable: True
+Sending HEAD request to http://example.com...Sending HEAD request to https://example.com... OK
+ OK
+Acquiring free TCP port... OK
+Testing local HTTP loopback connections...
+Creating new HTTP listener for http://localhost:41887/... OK
+Waiting for loopback connection... OK
+Writing response... OK
+Waiting for response data... OK
+Loopback connection data OK
+
+------------
+Diagnostic: Git
+Skipped: False
+Success: True
+Exception: None
+Log:
+Getting Git version... OK
+Git version is '2.54.0'
+Locating current repository...Git repository at '/home/anthony/Documents/esp32/.git'
+ OK
+Listing all Git configuration... OK
+Git configuration:
+file:/home/anthony/.config/git/config	alias.co=checkout
+file:/home/anthony/.config/git/config	alias.br=branch
+file:/home/anthony/.config/git/config	alias.ci=commit
+file:/home/anthony/.config/git/config	alias.st=status
+file:/home/anthony/.config/git/config	init.defaultbranch=master
+file:/home/anthony/.config/git/config	pull.rebase=true
+file:/home/anthony/.config/git/config	push.autosetupremote=true
+file:/home/anthony/.config/git/config	diff.algorithm=histogram
+file:/home/anthony/.config/git/config	diff.colormoved=plain
+file:/home/anthony/.config/git/config	diff.mnemonicprefix=true
+file:/home/anthony/.config/git/config	commit.verbose=true
+file:/home/anthony/.config/git/config	column.ui=auto
+file:/home/anthony/.config/git/config	branch.sort=-committerdate
+file:/home/anthony/.config/git/config	tag.sort=-version:refname
+file:/home/anthony/.config/git/config	rerere.enabled=true
+file:/home/anthony/.config/git/config	rerere.autoupdate=true
+file:/home/anthony/.config/git/config	user.name=Anthony Timmel
+file:/home/anthony/.config/git/config	user.email=anthony.timmel@dasshorty.de
+file:/home/anthony/.config/git/config	credential.helper=
+file:/home/anthony/.config/git/config	credential.helper=/usr/bin/git-credential-manager
+file:/home/anthony/.config/git/config	credential.https://dev.azure.com.usehttppath=true
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=true
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	remote.origin.url=https://github.com/DasShorty/esp32.git
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+file:.git/config	branch.master.remote=origin
+file:.git/config	branch.master.merge=refs/heads/master
+
+
+------------
+Diagnostic: Credential storage
+Skipped: False
+Success: False
+Exception:
+System.Exception: No credential store has been selected.
+
+Set the GCM_CREDENTIAL_STORE environment variable or the credential.credentialStore Git configuration setting to one of the following options:
+
+  secretservice : freedesktop.org Secret Service (requires graphical interface)
+  gpg           : GNU `pass` compatible credential storage (requires GPG and `pass`)
+  cache         : Git's in-memory credential cache
+  plaintext     : store credentials in plain-text files (UNSECURE)
+  none          : disable internal credential storage
+
+See https://aka.ms/gcm/credstores for more information.
+
+   at GitCredentialManager.CredentialStore.EnsureBackingStore()
+   at GitCredentialManager.CredentialStore.Remove(String service, String account)
+   at GitCredentialManager.Diagnostics.CredentialStoreDiagnostic.RunInternalAsync(StringBuilder log, IList`1 additionalFiles)
+   at GitCredentialManager.Diagnostics.Diagnostic.RunAsync()
+Log:
+ICredentialStore instance is of type: CredentialStore
+Writing test credential...Deleting test credential...
+------------
+Diagnostic: Microsoft authentication (AAD/MSA)
+Skipped: False
+Success: True
+Exception: None
+Log:
+Broker is not enabled.
+Flow type is: Auto
+Gathering MSAL token cache data... OK
+CacheDirectory: /home/anthony/.local/.IdentityService
+CacheFileName: msal.cache
+CacheFilePath: /home/anthony/.local/.IdentityService/msal.cache
+KeyringCollection: 
+KeyringSchemaName: 
+KeyringSecretLabel: 
+KeyringAttribute1: (,)
+KeyringAttribute2: (,)
+Creating cache helper... OK
+Verifying MSAL token cache persistence... OK
+
+------------
+Diagnostic: GitHub API
+Skipped: False
+Success: True
+Exception: None
+Log:
+Using 'https://github.com/' as API target.
+Querying '/meta' endpoint... OK
+
