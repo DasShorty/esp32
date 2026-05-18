@@ -1,7 +1,40 @@
 \babel@toc {ngerman}{}\relax 
-\contentsline {part}{I\hspace {1em}Einführung}{2}{part.1}%
 \contentsline {chapter}{\numberline {1}Grundlagen}{4}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Pub/Sub Messaging}{4}{section.1.1}%
-\contentsline {section}{\numberline {1.2}MQTT-Client}{5}{section.1.2}%
-\contentsline {part}{II\hspace {1em}MQTT-Client im ESP32}{6}{part.2}%
-\contentsline {chapter}{\numberline {2}Internetverbindung für den ESP32}{7}{chapter.2}%
+\contentsline {section}{\numberline {1.1}Begriffe des MQTT-Protokolls}{4}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}MQTT-Broker}{4}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}MQTT-Client}{4}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}MQTT-Topic und dessen Grundregeln}{4}{subsection.1.1.3}%
+\contentsline {subsection}{\numberline {1.1.4}Topic Wildcard einstufig und mehrstufig}{4}{subsection.1.1.4}%
+\contentsline {subsection}{\numberline {1.1.5}Stufenmodell Quality of Service (QoS)}{5}{subsection.1.1.5}%
+\contentsline {subsection}{\numberline {1.1.6}Last Will Testament}{6}{subsection.1.1.6}%
+\contentsline {section}{\numberline {1.2}Verbindungsmanagement zwischen Client und Server}{7}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Retained Messages}{7}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Persistent Sessions}{7}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}Keep Alive}{7}{subsection.1.2.3}%
+\contentsline {subsection}{\numberline {1.2.4}Web Sockets Transport}{7}{subsection.1.2.4}%
+\contentsline {section}{\numberline {1.3}Pub/Sub Messaging}{7}{section.1.3}%
+\contentsline {section}{\numberline {1.4}MQTT-Client}{8}{section.1.4}%
+\contentsline {chapter}{\numberline {2}Internetverbindung für den ESP32}{9}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Planung}{9}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Programmcode}{9}{section.2.2}%
+\contentsline {chapter}{\numberline {3}MQTT-Client}{11}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Planung}{11}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Programmcode}{11}{section.3.2}%
+\contentsline {chapter}{\numberline {4}Verarbeitung der Daten in NODE-RED}{12}{chapter.4}%
+\contentsline {section}{\numberline {4.1}MQTT-Client innerhalb von NODE-RED}{12}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Temperatur}{14}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Vorbereitung der Daten für das UI}{14}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}UI Template für aktuelle Daten}{14}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}UI Template für historie Daten}{15}{subsection.4.2.3}%
+\contentsline {section}{\numberline {4.3}Luftfeuchtigkeit}{15}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Vorbereitung der Daten für das UI}{15}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}UI Template für aktuelle Daten}{15}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}UI Template für historie Daten}{15}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}Bewegung}{15}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Vorbereitung der Daten für das UI}{15}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}UI Template für aktuelle Daten}{15}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}UI Template für historie Daten}{15}{subsection.4.4.3}%
+\contentsline {section}{\numberline {4.5}Helligkeit}{15}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Vorbereitung der Daten für das UI}{15}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}UI Template für aktuelle Daten}{15}{subsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.5.3}UI Template für historie Daten}{15}{subsection.4.5.3}%
