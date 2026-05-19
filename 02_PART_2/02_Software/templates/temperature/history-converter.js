@@ -12,8 +12,8 @@ history.push({
     timestamp: new Date()
 });
 
-let twentyFourHoursAgo = Date.now() - (24 * 60 * 60 * 1000);
-history = history.filter(record => record.timestamp >= twentyFourHoursAgo);
+let hourAgo = Date.now() - (60 * 60 * 1000);
+history = history.filter(record => record.timestamp >= hourAgo);
 
 global.set('temp-history', history);
 
