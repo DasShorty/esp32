@@ -1,0 +1,79 @@
+% !TeX spellcheck = german
+\documentclass[9pt,a4paper]{report}
+\usepackage[T1]{fontenc}    
+\usepackage[utf8]{inputenc} 
+\usepackage{geometry}
+\usepackage{wrapfig}
+\geometry{
+	letterpaper, % or a4paper
+	total={6.5in, 8.75in}, % total width and height of the text area
+	top=1.2in,
+	left=1in,
+	footskip=0.5in
+}
+
+\usepackage[bookmarks=true, pdfborder={0 0 0}]{hyperref}
+
+\usepackage[ngerman]{babel,cleveref}
+
+\hypersetup{
+	colorlinks=true,      % Rahmen entfernen und Text einfärben
+	linkcolor=blue,       % Farbe für interne Verweise (Tabellen, Kapitel, etc.)
+	urlcolor=blue,        % Farbe für Web-Adressen
+	citecolor=green!60!black % Farbe für Zitate (Dunkelgrün)
+}
+
+
+\usepackage{graphicx}
+
+% --- CODE SETUP
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{inputpath={{../02_Software/}}}
+
+% Define colors for the code
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% Setup the style
+\lstset{
+	language=Python,
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\small,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    % Line numbers on the left
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2,
+	literate={ö}{{\"o}}1 {ü}{{\"u}}1 {ä}{{\"a}}1 {ß}{{\"ss}}1 {°}{{\textdegree}}1
+}
+
+\title{ESP32 Wetter Station Teil 2}
+\author{Anthony Timmel}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	\cleardoublepage
+	
+	Im Rahmen des ersten Teils dieser Dokumentation setzen wir uns intensiv mit der initialen Aufgabenstellung aus dem Unterricht des Lernfeldes 7 (LF7) auseinander. Auf den nachfolgenden Seiten wird Ihnen das Projekt \textit{Wetterstation ESP32} in seiner zweiten Phase detailliert und in schriftlicher Form präsentiert, um einen fundierten Überblick über die Zielsetzung und den Aufbau zu geben.
+	
+	Diese Dokumentation ist der dritte Teil der Dokumentationsreihe, über den \textit{ESP32} als Wetterstation.
+	
+	\chapter{Grundlagen}
+	
+	
+\end{document}

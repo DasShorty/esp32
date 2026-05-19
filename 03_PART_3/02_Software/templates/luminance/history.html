@@ -1,0 +1,139 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
+<div class="history-card">
+    <div class="chart-header">
+        <span class="chart-title">Verlauf (24h)</span>
+        <span class="chart-avg">Schnitt: {{avgHumid}}%</span>
+    </div>
+    <div class="chart-container">
+        <canvas id="luminanceHistoryChart"></canvas>
+    </div>
+</div>
+
+<style>
+    .history-card {
+        background: #e3e3e3;
+        border-radius: 16px;
+        padding: 16px 16px 8px 16px;
+        color: white;
+        font-family: 'Segoe UI', sans-serif;
+        height: calc(100% - 32px);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .chart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .chart-title {
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #a0aec0;
+    }
+
+    .chart-avg {
+        font-size: 0.85rem;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 2px 8px;
+        border-radius: 4px;
+        color: #a0aec0;
+    }
+
+    .chart-container {
+        flex-grow: 1;
+        position: relative;
+    }
+</style>
+
+<script>
+    (function (scope) {
+        let chart;
+
+        function initChart(data) {
+            const ctx = document.getElementById('luminanceHistoryChart').getContext('2d');
+
+            const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+            gradient.addColorStop(0, 'rgba(27, 213, 237, 0.4)');
+            gradient.addColorStop(1, 'rgba(27, 213, 237, 0)');
+
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.map(d => d.time),
+                    datasets: [{
+                        label: 'Helligkeit',
+                        data: data.map(d => d.value),
+                        borderColor: '#1bd5ed',
+                        borderWidth: 3,
+                        pointRadius: 0,
+                        pointHoverRadius: 5,
+                        fill: true,
+                        backgroundColor: gradient,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {display: false}
+                    },
+                    layout: {
+                        padding: {
+                            bottom: 10
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: true,
+                            grid: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#718096',
+                                font: {size: 10},
+                                maxRotation: 0,
+                                autoSkip: true,
+                                maxTicksLimit: 8
+                            }
+                        },
+                        y: {
+                            grid: {
+                                color: 'rgba(255,255,255,0.05)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#718096',
+                                font: {size: 10}
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        scope.$watch('msg', function (msg) {
+            if (!msg || !msg.payload) return;
+
+            if (Array.isArray(msg.payload)) {
+                const values = msg.payload.map(d => d.value);
+                scope.avgHumid = (values.reduce((a, b) => a + b, 0) / values.length).toFixed(1);
+
+                if (!chart) {
+                    initChart(msg.payload);
+                } else {
+                    chart.data.labels = msg.payload.map(d => d.time);
+                    chart.data.datasets[0].data = values;
+                    chart.update('none');
+                }
+            }
+        });
+    })(scope);
+</script>

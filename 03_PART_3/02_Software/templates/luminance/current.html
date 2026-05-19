@@ -1,0 +1,143 @@
+<div class="lum-widget" ng-class="getLumClass(msg.payload)">
+    <div class="glass-overlay"></div>
+    <div class="content">
+        <span class="label">Helligkeit</span>
+        <div class="lum-value">
+            <span class="number">{{msg.payload | number:0}}</span><span class="unit">Lumen</span>
+        </div>
+        <div class="status-indicator">
+            <div class="pulse-dot"></div>
+            <span class="status-text">{{getLumStatus(msg.payload)}}</span>
+        </div>
+    </div>
+</div>
+
+<style>
+
+    .lum-widget {
+        position: relative;
+        overflow: hidden;
+        border-radius: 18px;
+        padding: 20px;
+        color: white;
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        min-height: 120px;
+        transition: background 0.8s ease;
+    }
+
+    .glass-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .label {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        opacity: 0.8;
+    }
+
+    .lum-value {
+        display: flex;
+        align-items: baseline;
+        margin-bottom: 5px;
+    }
+
+    .number {
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 1;
+    }
+
+    .unit {
+        font-size: 1.5rem;
+        margin-left: 5px;
+        font-weight: 300;
+    }
+
+    .status-indicator {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9rem;
+    }
+
+    .pulse-dot {
+        width: 8px;
+        height: 8px;
+        background-color: white;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(0.95);
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+        }
+        70% {
+            transform: scale(1);
+            box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+        }
+        100% {
+            transform: scale(0.95);
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+        }
+    }
+
+    .lum-night {
+        background: linear-gradient(135deg, #141e30 0%, #243b55 100%);
+    }
+
+    .lum-dim {
+        background: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%);
+    }
+
+    .lum-indoor {
+        background: linear-gradient(135deg, #f12711 0%, #f5af19 100%);
+    }
+
+    .lum-bright {
+        background: linear-gradient(135deg, #fffbd5 0%, #b20a2c 100%);
+    }
+
+    .lum-sunny {
+        background: linear-gradient(135deg, #ffce00 0%, #ff8c00 100%);
+    }
+
+    .lum-max {
+        background: linear-gradient(135deg, #ffffff 0%, #ffefba 100%);
+        color: #333 !important;
+    }
+</style>
+
+<script>
+    (function (scope) {
+        scope.getLumClass = function (lum) {
+            if (lum < 10) return 'lum-night';
+            if (lum >= 10 && lum <= 100) return 'lum-dim';
+            if (lum > 100 && lum <= 500) return 'lum-indoor';
+            if (lum > 500 && lum <= 2000) return 'lum-bright';
+            return 'lum-max';
+        };
+
+        scope.getLumStatus = function (lum) {
+            if (lum < 10) return 'Nacht';
+            if (lum >= 10 && lum <= 100) return 'Dämmerung';
+            if (lum > 100 && lum <= 500) return 'Wohnlicht';
+            if (lum > 500 && lum <= 2000) return 'Tageslicht';
+            return 'Direketes Licht';
+        };
+    })(scope);
+</script>
