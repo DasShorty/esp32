@@ -10,10 +10,12 @@ from umqtt.simple import MQTTClient
 RED_LED_PIN = 2
 ORANGE_LED_PIN = 17
 GREEN_LED_PIN = 5
+FAN_LED_PIN = 18
 
 led_red = Pin(RED_LED_PIN, Pin.OUT, drive=Pin.DRIVE_0)
 led_orange = Pin(ORANGE_LED_PIN, Pin.OUT, drive=Pin.DRIVE_0)
 led_green = Pin(GREEN_LED_PIN, Pin.OUT, drive=Pin.DRIVE_0)
+led_fan = Pin(FAN_LED_PIN, Pin.OUT, drive=Pin.DRIVE_0)
 
 dht_device = DHT22(Pin(4, Pin.IN))
 
@@ -36,9 +38,24 @@ user = "FI"
 password = "FI"
 mqtt_client = MQTTClient(client_id, server, port, user, password, keepalive=0, ssl=False, ssl_params={})
 
+def handle_led_fan_callback(topic, msg):
+
+    topic = topic.decode('utf-8')
+
+    print(bool(msg))
+    print(topic)
+    converted_msg = json.loads(msg)
+
+    if topic is "Met/Luefter/Timmel":
+        print("TOPIC MATCH")
+        led_fan.value(bool(converted_msg))
+
+    pass
 
 def mqtt_connect():
     mqtt_client.connect()
+    mqtt_client.set_callback(handle_led_fan_callback)
+    mqtt_client.subscribe("Met/Luefter/Timmel")
 
 
 def do_connect():
@@ -108,11 +125,12 @@ def set_motion_led(motion):
 
 
 def handle_lcd_data_display(temperature, humidity, motion, luminance, wlan):
-    display_text(f"Temperatur: {temp}", f"Humidity: {humid}", f"Motion: {motion}", f"Lux: {luminance}", f"WLAN: {wlan}")
+    display_text(f"Temperatur: {temperature}", f"Humidity: {humidity}", f"Motion: {motion}", f"Lux: {luminance}", f"WLAN: {wlan}")
 
 
 do_connect()
 mqtt_connect()
+
 
 while True:
     temp, humid = get_device_temperature_and_humidity()
@@ -134,4 +152,5 @@ while True:
     print(json_object)
 
     send_mqtt_message(json_object)
+    mqtt_client.check_msg()
     sleep(1)
