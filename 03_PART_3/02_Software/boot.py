@@ -42,13 +42,10 @@ def handle_led_fan_callback(topic, msg):
 
     topic = topic.decode('utf-8')
 
-    print(bool(msg))
-    print(topic)
     converted_msg = json.loads(msg)
 
-    if topic is "Met/Luefter/Timmel":
-        print("TOPIC MATCH")
-        led_fan.value(bool(converted_msg))
+    if topic == "Met/Luefter/Timmel":
+        led_fan.value(converted_msg == "true")
 
     pass
 
